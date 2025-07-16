@@ -1,0 +1,4 @@
+- Choose a condition by clicking a button, then watch what happens.
+Example: Touch the "STRONG MICE" text to the right.
+This setting helps mice by boosting their Lifespan (how long they live) and Fitness (how likely they are to reproduce).
+- For more subtle changes, use the sliders to adjust Lifespan or Fitness for each species.

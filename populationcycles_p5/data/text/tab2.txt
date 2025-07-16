@@ -1,0 +1,3 @@
+REALITY IS MORE COMPLICATED
+You’re playing with a simple model of an ecological community—a collection of species interacting with one another. The model uses a mathematical equation to describe each species—how it lives, reproduces, and eats or gets eaten by others.
+Biologists use models to simulate real ecosystems, and to predict what would happen under different conditions, such as a ban on hunting. But their research models are much more sophisticated than this game. They include many more species, as well as factors like migration and the physical space where the organisms live. 
