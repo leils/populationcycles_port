@@ -107,7 +107,6 @@ let graphHeight = fullHeight - simY * 2 - simHeight - (fullHeight - txtY);  // h
 // let reactextX = fullWidth - 5 * simX;
 // let reactextY = controlsY - 0.8 * simY;
 
-// let tabHeight = 50;
 // let tabRoundRadius = 8;
 // let tabSpacer = 10;
 // let txtRoundRadius = 15;
@@ -184,6 +183,13 @@ let rtEaglesDead = "Eagles extinct! With no one to eat the mice, will grain surv
 let rtMiceEaglesDead = "Mice and eagles extinct! Grain rules the world!";
 let rtTooLong = "Reached 1,000 generations, let's start over and see what happens.";
 
+// Text and tab variables that are needed bc the some remnants still rely on them
+let tabHeight = 50;
+let txtMin = fullHeight - (tabHeight * 1.2);
+let resetColor;
+let slideText = false;
+let timer = 0;
+
 // Text and tab variables - no longer needed with HTML controls
 // let tab1 = "TRY THIS";
 // let tab2 = "WHAT'S GOING ON?";
@@ -193,15 +199,11 @@ let rtTooLong = "Reached 1,000 generations, let's start over and see what happen
 // let textState = "down";
 // let slideTime = 1000;
 // let txtMax = simHeight + simY * 2 + fullHeight * 0.07;
-// let txtMin = fullHeight - (tabHeight * 1.2);
 // let txtTimeOut = 60000;
 // let timeOut = 10000;
 // let resetBlinkRate = 2000;
-// let resetColor;
-// let slideText = false;
 // let lineHeight = 14;
 // let txtMargin = 5;
-// let timer = 0;
 
 //---------------------------- Simulation State Variables --------------------------------//
 

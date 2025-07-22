@@ -99,23 +99,23 @@ function keyPressed() {
     showHelp = false;
   }
   
-  // Number keys 1-3 select tabs
-  if (key === '1') {
-    tabNum = 0;
-    slideText = true;
-    textState = "down";
-    clickTimer = millis();
-  } else if (key === '2') {
-    tabNum = 1;
-    slideText = true;
-    textState = "down";
-    clickTimer = millis();
-  } else if (key === '3') {
-    tabNum = 2;
-    slideText = true;
-    textState = "down";
-    clickTimer = millis();
-  }
+  // // Number keys 1-3 select tabs
+  // if (key === '1') {
+  //   // tabNum = 0;
+  //   slideText = true;
+  //   // textState = "down";
+  //   clickTimer = millis();
+  // } else if (key === '2') {
+  //   tabNum = 1;
+  //   slideText = true;
+  //   // textState = "down";
+  //   clickTimer = millis();
+  // } else if (key === '3') {
+  //   tabNum = 2;
+  //   slideText = true;
+  //   // textState = "down";
+  //   clickTimer = millis();
+  // }
   
   // 'c' key cycles color palettes if in debug mode
   if (key === 'c' && colorDebug) {
