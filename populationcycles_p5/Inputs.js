@@ -75,12 +75,12 @@ function keyPressed() {
     step = 1 - step;
   }
   
-  // Arrow keys control speed
-  if (keyCode === RIGHT_ARROW) {
-    speed = constrain(speed - 1, maxSpeed, minSpeed);
-  } else if (keyCode === LEFT_ARROW) {
-    speed = constrain(speed + 1, maxSpeed, minSpeed);
-  }
+  // // Arrow keys control speed
+  // if (keyCode === RIGHT_ARROW) {
+  //   speed = constrain(speed - 1, maxSpeed, minSpeed);
+  // } else if (keyCode === LEFT_ARROW) {
+  //   speed = constrain(speed + 1, maxSpeed, minSpeed);
+  // }
   
   // 'r' key resets simulation
   if (key === 'r') {
@@ -90,14 +90,14 @@ function keyPressed() {
   }
   
   // 'h' key toggles help
-  if (key === 'h') {
-    showHelp = !showHelp;
-  }
+  // if (key === 'h') {
+  //   showHelp = !showHelp;
+  // }
   
   // 'Escape' key closes help if it's open
-  if (keyCode === ESCAPE && showHelp) {
-    showHelp = false;
-  }
+  // if (keyCode === ESCAPE && showHelp) {
+  //   showHelp = false;
+  // }
   
   // // Number keys 1-3 select tabs
   // if (key === '1') {
