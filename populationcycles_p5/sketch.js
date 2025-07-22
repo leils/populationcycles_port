@@ -33,11 +33,37 @@ function setup() {
   globalSetupOperations();
   
   displayText();
-  displayControls();
+  // displayControls(); // Commented out, now handled by HTML
   
   seedSimulation();
   runSimulation();
   graphCells();
+
+  // --- HTML Controls Integration ---
+  const resetBtn = document.getElementById('reset-btn');
+  const playBtn = document.getElementById('play-btn');
+  const speedSlider = document.getElementById('speed-slider');
+
+  if (resetBtn) {
+    resetBtn.onclick = () => {
+      seedSimulation();
+      runSimulation();
+      graphCells();
+    };
+  }
+  if (playBtn) {
+    playBtn.onclick = () => {
+      step = 1 - step;
+      playBtn.textContent = step ? 'Pause' : 'Play';
+    };
+    playBtn.textContent = step ? 'Pause' : 'Play';
+  }
+  if (speedSlider) {
+    speedSlider.oninput = (e) => {
+      speed = parseInt(e.target.value, 10);
+    };
+    speedSlider.value = speed;
+  }
 }
 
 function draw() {
@@ -49,7 +75,7 @@ function draw() {
   clearScreen();
   
   displaySimulation();
-  displayControls();
+  // displayControls(); // Commented out, now handled by HTML
   displayGraph();
   displayPresets();
   

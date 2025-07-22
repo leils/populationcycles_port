@@ -32,5 +32,10 @@
 </head>
 <body>
   <!-- canvas element will go here, made by p5 -->
+  <div id="controls" style="position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(30,30,30,0.8); padding: 10px; border-radius: 8px; display: flex; gap: 12px; align-items: center;">
+    <button id="reset-btn">Reset</button>
+    <button id="play-btn">Play</button>
+    <label style="color: #fff;">Speed: <input id="speed-slider" type="range" min="1" max="60" value="10" style="vertical-align: middle;"></label>
+  </div>
 </body>
 </html> 
