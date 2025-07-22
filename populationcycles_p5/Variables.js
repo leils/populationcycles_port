@@ -20,13 +20,21 @@ let maxSpeed = 60;
 
 let wallss = 500;     // Walls lifespan
 
-let grains = 5;       // grain lifespan (in generation number)
-let mices = 5;        // mice lifespan (in generation number)
-let eagless = 5;      // eagle lifespan (in generation number)
+let defaultGrains = 5;
+let defaultMice = 5;
+let defaultEagles = 5;
 
-let grainsi = 50;     // Percent chance of grain growth given correct parameters
-let micei = 50;       // Percent chance of mice growth given correct parameters
-let eaglesi = 50;     // Percent chance of eagle growth given correct parameters
+let defaultgrainsi = 50;
+let defaultmicei = 50;
+let defaulteaglesi = 50;
+
+let grains = defaultGrains;       // grain lifespan (in generation number)
+let mices = defaultMice;        // mice lifespan (in generation number)
+let eagless = defaultEagles;      // eagle lifespan (in generation number)
+
+let grainsi = defaultgrainsi;     // Percent chance of grain growth given correct parameters
+let micei = defaultmicei;       // Percent chance of mice growth given correct parameters
+let eaglesi = defaulteaglesi;     // Percent chance of eagle growth given correct parameters
 
 /* PRESETS
 

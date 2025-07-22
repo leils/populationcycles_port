@@ -30,6 +30,30 @@ canvas {
   color: #fff;
 }
 
+#controls button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#controls button:hover {
+  background: #444;
+}
+
+#heat-wave-btn {
+  background: linear-gradient(45deg, #ff4e50, #f9d423) !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+#heat-wave-btn:hover {
+  background: linear-gradient(45deg, #ff6b6d, #fae042) !important;
+}
+
 #reaction-text {
   position: absolute;
   top: 70px;

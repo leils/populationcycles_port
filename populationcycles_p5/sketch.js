@@ -17,6 +17,9 @@ function setup() {
   
   globalSetupOperations();
   
+  // displayText(); // Removed
+  // displayControls(); // Commented out, now handled by HTML
+  
   seedSimulation();
   runSimulation();
   graphCells();
@@ -25,9 +28,18 @@ function setup() {
   const resetBtn = document.getElementById('reset-btn');
   const playBtn = document.getElementById('play-btn');
   const speedSlider = document.getElementById('speed-slider');
+  const heatWaveBtn = document.getElementById('heat-wave-btn');
 
   if (resetBtn) {
     resetBtn.onclick = () => {
+      grains = defaultGrains;       // grain lifespan (in generation number)
+      mices = defaultMice;        // mice lifespan (in generation number)
+      eagless = defaultEagles;      // eagle lifespan (in generation number)
+
+      grainsi = defaultgrainsi;     // Percent chance of grain growth given correct parameters
+      micei = defaultmicei;       // Percent chance of mice growth given correct parameters
+      eaglesi = defaulteaglesi;     // Percent chance of eagle growth given correct parameters
+
       seedSimulation();
       runSimulation();
       graphCells();
@@ -45,6 +57,22 @@ function setup() {
       speed = parseInt(e.target.value, 10);
     };
     speedSlider.value = speed;
+  }
+  if (heatWaveBtn) {
+    heatWaveBtn.onclick = () => {
+      // Apply Weak Grain preset
+      grains = 2;
+      mices = 5;
+      eagless = 5;
+      grainsi = 20;
+      micei = 50;
+      eaglesi = 50;
+      
+      // Restart simulation with new parameters
+      seedSimulation();
+      runSimulation();
+      graphCells();
+    };
   }
 }
 
