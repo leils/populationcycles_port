@@ -12,30 +12,17 @@
   <script src="Graph.js"></script>
   <script src="Inputs.js"></script>
   <script src="Simulation.js"></script>
-  <script src="Text.js"></script>
+  <!-- <script src="Text.js"></script> -->
   <script src="Variables.js"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- canvas element will go here, made by p5 -->
-  <div id="controls" style="position: absolute; top: 20px; left: 20px; z-index: 10; background: rgba(30,30,30,0.8); padding: 10px; border-radius: 8px; display: flex; gap: 12px; align-items: center;">
+  <div id="controls">
     <button id="reset-btn">Reset</button>
     <button id="play-btn">Play</button>
-    <label style="color: #fff;">Speed: <input id="speed-slider" type="range" min="1" max="60" value="10" style="vertical-align: middle;"></label>
+    <label>Speed: <input id="speed-slider" type="range" min="1" max="60" value="10"></label>
   </div>
+  <div id="reaction-text"></div>
 </body>
 </html> 

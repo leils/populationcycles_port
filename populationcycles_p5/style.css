@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+#controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(30,30,30,0.8);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+#controls label {
+  color: #fff;
+}
+
+#reaction-text {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  z-index: 10;
+  color: #ffe680;
+  background: rgba(30,30,30,0.85);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 1.1em;
+  min-width: 320px;
+  min-height: 1.5em;
+  font-family: Arial, sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#reaction-text:not(:empty) {
+  opacity: 1;
+} 

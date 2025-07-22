@@ -27,12 +27,12 @@ function setup() {
   sim = createGraphics(Math.floor(simWidth), Math.floor(simHeight));
   sim.background(0);
   
-  // P5.js doesn't use PFont objects like Processing, so we'll use font styling instead
+  // TODO: use explo-specific fonts
   textFont('Arial');
   
   globalSetupOperations();
   
-  displayText();
+  // displayText(); // Removed
   // displayControls(); // Commented out, now handled by HTML
   
   seedSimulation();
@@ -67,6 +67,7 @@ function setup() {
 }
 
 function draw() {
+  // Note: Speed seems to be what we're DIVIDING the framecount by, not like ... how often we're updating the sim
   if (step == 1 && frameCount % speed == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
     runSimulation();
     graphCells();
@@ -75,19 +76,38 @@ function draw() {
   clearScreen();
   
   displaySimulation();
-  // displayControls(); // Commented out, now handled by HTML
   displayGraph();
   displayPresets();
-  
-  reactionText();
-  displayText();
-  showHelpScreen();
+
+  updateReactionText();
 
   // Display debug info in the console
-  console.log("FPS: " + Math.floor(frameRate()) + " — Generation: " + generationCount + 
-              " - Total Cells: " + maxcells + " with " + graincount + " grain, " + 
-              micecount + " mice, and " + eaglescount + " eagles     cell size: " + 
-              s + " speed: " + speed + " zoom: " + zoom);
+  // console.log("FPS: " + Math.floor(frameRate()) + " — Generation: " + generationCount + 
+  //             " - Total Cells: " + maxcells + " with " + graincount + " grain, " + 
+  //             micecount + " mice, and " + eaglescount + " eagles     cell size: " + 
+  //             s + " speed: " + speed + " zoom: " + zoom);
+}
+
+function updateReactionText() {
+  const reactionDiv = document.getElementById('reaction-text');
+  if (!reactionDiv) return;
+
+  let message = "";
+  if (graincount === 0 && micecount === 0 && eaglescount === 0) {
+    message = rtAllDead;
+  } else if (graincount === 0) {
+    message = rtGrainDead;
+  } else if (micecount === 0 && eaglescount === 0) {
+    message = rtMiceEaglesDead;
+  } else if (micecount === 0) {
+    message = rtMiceDead;
+  } else if (eaglescount === 0) {
+    message = rtEaglesDead;
+  } else if (generationCount >= 1000) {
+    message = rtTooLong;
+  }
+  
+  reactionDiv.textContent = message;
 }
 
 function globalSetupOperations() {
@@ -216,11 +236,12 @@ function showHelpScreen() {
     rect(0, 0, width, height);
     
     // Show help image centered on screen
-    if (helpGraphic[0]) {
-      imageMode(CENTER);
-      image(helpGraphic[0], width/2, height/2);
-      imageMode(CORNER);
-    }
+    // TODO: we should add any help text via HTML
+    // if (helpGraphic[0]) {
+    //   imageMode(CENTER);
+    //   image(helpGraphic[0], width/2, height/2);
+    //   imageMode(CORNER);
+    // }
     
     // Show 'X' to close
     fill(200);
