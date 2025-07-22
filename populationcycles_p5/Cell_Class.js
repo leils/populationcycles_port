@@ -131,29 +131,10 @@ function render(id) {                                                 // draw th
     sim.fill(cells[id][2]);                                           // make it the correct color
     sim.stroke(cells[id][2]);
     
-
+    // Draw the cells as circles
     sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
                 0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
                 s, s);
-    // if (cellShape === 0) {                                            // then draw a circle if cellShape is set to 0
-    //   sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
-    //               0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
-    //               s, s);
-    // }
-    // else if (cellShape === 1) {                                       // or draw a square if cellShape is set to 1
-    //   let x = Math.floor(0.5 * s + (cells[id][0] % rowSize) * s);
-    //   let y = Math.floor(0.3 * s + Math.floor(cells[id][0] / rowSize) * s);
-      
-    //   sim.set(x, y, cells[id][2]);
-    //   sim.set(x + 1, y, cells[id][2]);
-    //   sim.set(x, y + 1, cells[id][2]);
-    //   sim.set(x + 1, y + 1, cells[id][2]);
-    //   sim.set(x, y + 2, cells[id][2]);
-    //   sim.set(x + 1, y + 2, cells[id][2]);
-    //   sim.set(x + 2, y + 2, cells[id][2]);
-    //   sim.set(x + 2, y + 1, cells[id][2]);
-    //   sim.set(x + 2, y, cells[id][2]);
-    // }
   }
 }
 

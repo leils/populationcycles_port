@@ -1,21 +1,6 @@
 // Main sketch file for Population Cycles
 
 function preload() {
-  // Load fonts and images
-  // In P5.js, we use the standard web fonts instead of Processing's PFont
-  
-  // Load help graphics
-  // for (let i = 0; i < helpGraphic.length; i++) {
-  //   helpGraphic[i] = loadImage('data/help' + (i + 1) + '.png');
-  // }
-  
-  // Load text tabs
-  // for (let i = 0; i < txt.length; i++) {
-  //   txt[i] = loadImage('data/text/tab' + (i + 1) + '.png');
-  // }
-  
-  // Note: We don't need to load .vlw fonts in P5.js
-  // We'll use web-safe fonts instead
 }
 
 function setup() {
@@ -31,9 +16,6 @@ function setup() {
   textFont('Arial');
   
   globalSetupOperations();
-  
-  // displayText(); // Removed
-  // displayControls(); // Commented out, now handled by HTML
   
   seedSimulation();
   runSimulation();
@@ -224,44 +206,3 @@ function clearScreen() {
   noStroke();
   rect(0, 0, width, height);
 }
-
-
-
-// Display help screen when showHelp is true
-function showHelpScreen() {
-  if (showHelp) {
-    // Darken the background
-    fill(0, 0, 0, 200);
-    rect(0, 0, width, height);
-    
-    // Show help image centered on screen
-    // TODO: we should add any help text via HTML
-    // if (helpGraphic[0]) {
-    //   imageMode(CENTER);
-    //   image(helpGraphic[0], width/2, height/2);
-    //   imageMode(CORNER);
-    // }
-    
-    // Show 'X' to close
-    fill(200);
-    textSize(24);
-    textAlign(CENTER, CENTER);
-    text("X", width - 30, 30);
-  }
-  
-  // Always show the help button in the top-right corner
-  drawHelpButton();
-}
-
-function drawHelpButton() {
-  // Help button in top right corner
-  fill(40);
-  stroke(100);
-  rect(width - 40, 10, 30, 30, 5);
-  
-  fill(200);
-  noStroke();
-  textSize(20);
-  textAlign(CENTER, CENTER);
-  text("?", width - 25, 25);
-} 

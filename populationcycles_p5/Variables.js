@@ -1,8 +1,6 @@
 // Font variables
-let boldFont, normalFont, medFont, largeFont;
 let sim;
 let renderedSim = [null, null];
-// let helpGraphic = [null, null, null, null];
 
 //-------------------------------- Defining Global Variables ----------------------------------//
 
