@@ -99,69 +99,6 @@ let graphY = simHeight + simY;                          // graph position Y
 let graphWidth = fullWidth * 0.48;                              // width of graph
 let graphHeight = fullHeight - simY * 2 - simHeight - (fullHeight - txtY);  // height of graph
 
-// UI Control positions - no longer needed with HTML controls
-// let controlsX = fullWidth * 0.5 + 2 * simX;
-// let controlsY = simHeight + 5 * simY;
-// let controlsWidth = fullWidth * 0.47;
-// let controlsHeight = fullHeight * 0.24;
-
-// let presetsX = controlsX;
-// let presetsY = controlsY + controlsHeight - fullHeight * 0.075 - 0.5 * simY;
-// let presetsWidth = controlsWidth;
-// let presetsHeight = fullHeight * 0.08;
-
-// let reactextX = fullWidth - 5 * simX;
-// let reactextY = controlsY - 0.8 * simY;
-
-// let tabRoundRadius = 8;
-// let tabSpacer = 10;
-// let txtRoundRadius = 15;
-// let simBorderThickness = 4;
-
-// let simControlsButtonSize = Math.floor(fullHeight * 0.04);
-// let simControlsButtonRoundRad = 7;
-// let simControlsButtonSpacer = 5;
-// let buttonPadding = 5;
-
-// let simControlsX = controlsX + presetsWidth * 0.05 + simControlsButtonSize * 3 + simControlsButtonRoundRad + simControlsButtonSpacer;
-// let simControlsY = simHeight + simY;
-// let simControlsWidth = controlsWidth - simControlsButtonSize * 3 - simControlsButtonRoundRad;
-// let simControlsHeight = presetsHeight * 0.5;
-
-// let resetButtonX = simControlsX - simControlsButtonSize * 3 - simControlsButtonRoundRad * 0.5 - simControlsButtonSpacer;
-// let resetButtonY = simControlsY + simControlsButtonRoundRad * 0.5;
-
-// let speedSliderX = simControlsX + simControlsButtonRoundRad * 3.5 + 3 * simControlsButtonSpacer + 3 * simControlsButtonSize + 30;
-// let speedSliderY = simControlsY + simControlsHeight * 0.5;
-// let speedSliderLength = controlsWidth * 0.3;
-// let speedSliderArrow = speedSliderX + speed * (speedSliderLength / minSpeed);
-// let speedSliderArrowSize = 15;
-
-// let paintButtonX = simControlsX + simControlsButtonSize * 5 + speedSliderLength + simControlsButtonSpacer * 7;
-// let paintButtonY = simControlsY + simControlsButtonRoundRad * 0.5;
-
-// let zoomButtonX = simControlsX + simControlsButtonSize * 6 + speedSliderLength + simControlsButtonSpacer * 9;
-// let zoomButtonY = simControlsY + simControlsButtonRoundRad * 0.5;
-
-// let adjustorBarWidth = Math.floor(presetsWidth * 0.22);
-// let adjustorBarHeight = 40;
-// let adjustorRoundRadius = 3;
-
-// Species panel positions - no longer needed with HTML controls
-// let grainIntBarX = controlsX + controlsWidth * 0.08;
-// let grainIntBarY = controlsY + 2.5 * controlsHeight * 0.165;
-// let grainStrBarX = controlsX + controlsWidth * 0.08;
-// let grainStrBarY = controlsY + 2.5 * controlsHeight * 0.08;
-
-// let miceIntBarX = controlsX + controlsWidth * 0.38;
-// let miceIntBarY = controlsY + 2.5 * controlsHeight * 0.165;
-// let miceStrBarX = controlsX + controlsWidth * 0.38;
-// let miceStrBarY = controlsY + 2.5 * controlsHeight * 0.08;
-
-// let eaglesIntBarX = controlsX + controlsWidth * 0.68;
-// let eaglesIntBarY = controlsY + 2.5 * controlsHeight * 0.165;
-// let eaglesStrBarX = controlsX + controlsWidth * 0.68;
-// let eaglesStrBarY = controlsY + 2.5 * controlsHeight * 0.08;
 
 //----------------------------- Graph Variables ---------------------------------//
 
@@ -195,21 +132,6 @@ let txtMin = fullHeight - (tabHeight * 1.2);
 let resetColor;
 let slideText = false;
 let timer = 0;
-
-// Text and tab variables - no longer needed with HTML controls
-// let tab1 = "TRY THIS";
-// let tab2 = "WHAT'S GOING ON?";
-// let tab3 = "REAL-WORLD STORY";
-// let tabNum = 0;
-// let clickTimer = 0;
-// let textState = "down";
-// let slideTime = 1000;
-// let txtMax = simHeight + simY * 2 + fullHeight * 0.07;
-// let txtTimeOut = 60000;
-// let timeOut = 10000;
-// let resetBlinkRate = 2000;
-// let lineHeight = 14;
-// let txtMargin = 5;
 
 //---------------------------- Simulation State Variables --------------------------------//
 

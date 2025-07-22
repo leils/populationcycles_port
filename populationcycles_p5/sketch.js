@@ -17,9 +17,6 @@ function setup() {
   
   globalSetupOperations();
   
-  // displayText(); // Removed
-  // displayControls(); // Commented out, now handled by HTML
-  
   seedSimulation();
   runSimulation();
   graphCells();
@@ -61,24 +58,20 @@ function setup() {
   if (heatWaveBtn) {
     heatWaveBtn.onclick = () => {
       // Apply Weak Grain preset
-      grains = 2;
+      grains = 2; //reduce grain strength
       mices = 5;
       eagless = 5;
-      grainsi = 20;
+      grainsi = 20; // reduce grain intelligence
       micei = 50;
       eaglesi = 50;
-      
-      // Restart simulation with new parameters
-      seedSimulation();
-      runSimulation();
-      graphCells();
     };
   }
 }
 
 function draw() {
   // Note: Speed seems to be what we're DIVIDING the framecount by, not like ... how often we're updating the sim
-  if (step == 1 && frameCount % speed == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
+  let updateRate = 61-speed;
+  if (step == 1 && frameCount % updateRate == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
     runSimulation();
     graphCells();
     timer = millis();
