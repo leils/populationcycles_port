@@ -57,8 +57,9 @@ function setup() {
   }
   if (heatWaveBtn) {
     heatWaveBtn.onclick = () => {
+      markHeatWave();
       // Apply Weak Grain preset
-      grains = 2; //reduce grain strength
+      grains = 2; //reduce grain
       mices = 5;
       eagless = 5;
       grainsi = 20; // reduce grain intelligence

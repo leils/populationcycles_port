@@ -114,6 +114,9 @@ let grainLine;                         // declaring variables for the lines in t
 let miceLine;
 let eaglesLine;
 
+// Array to store positions of heat wave events in the graph
+let heatWaveMarkers = [];
+
 let graphDensity = Math.floor(graphWidth / 100);    // graph line density 
 let barWidth = graphWidth / 100;                         // Define width of bars at left of graph
 

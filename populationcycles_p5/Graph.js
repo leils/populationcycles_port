@@ -15,6 +15,18 @@ function graphCells() {
   grainLine[Math.floor(graphX + 1)] = grainBar;
   miceLine[Math.floor(graphX + 1)] = miceBar;
   eaglesLine[Math.floor(graphX + 1)] = eaglesBar;
+
+  // Shift heat wave markers with the graph
+  for (let i = 0; i < heatWaveMarkers.length; i++) {
+    heatWaveMarkers[i]++;
+    // Remove markers that have moved off the graph
+    // Each position represents graphDensity pixels, so we remove markers
+    // when they've moved graphWidth/graphDensity positions (same as grainLine.length)
+    if (heatWaveMarkers[i] * graphDensity >= graphWidth) {
+      heatWaveMarkers.splice(i, 1);
+      i--;
+    }
+  }
 }
 
 function displayGraph() {
@@ -31,6 +43,9 @@ function displayGraph() {
   
   // Draw graph lines
   drawGraphLines();
+  
+  // Draw heat wave markers
+  drawHeatWaveMarkers();
   
   // Draw population bars
   drawPopulationBars();
@@ -117,4 +132,20 @@ function drawPopulationBars() {
     fill(grainc);
     rect(graphWidth - 3 * barWidth, graphY + graphHeight, barWidth, -graphHeight * (1 - grainBar));
   }
+} 
+
+function drawHeatWaveMarkers() {
+  stroke(255, 0, 0, 100);  // Semi-transparent red
+  strokeWeight(4);
+  
+  for (let i = 0; i < heatWaveMarkers.length; i++) {
+    let x = graphWidth - heatWaveMarkers[i] * graphDensity;
+    line(x, graphY, x, graphY + graphHeight);
+  }
+}
+
+// Call this when a heat wave occurs
+function markHeatWave() {
+  // TODO: pushing at 2 is a hack because we shifted the bars or something ... fix
+  heatWaveMarkers.push(2);  // Add marker at current position (right edge of graph)
 } 
