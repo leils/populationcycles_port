@@ -134,7 +134,8 @@ function globalSetupOperations() {
   txtY = txtMin;
   
   // Set up graph arrays
-  let graphLineArrayLength = (graphWidth) / graphDensity;
+  // TODO: fix this weird hack to get the lines to span the width of the graph
+  let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
   
   grainLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
   miceLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);

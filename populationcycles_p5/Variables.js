@@ -12,7 +12,7 @@ let zoom = 200;                                          // Level of detail of s
 // let cellShape = 0;                                       // 0 == circular cells; 1 == square cells;
 let s = Math.floor(fullWidth / zoom);                   // size of each cell
 let step = 1;                                           // 0 == manual step; 1 == auto step;
-let speed = 10;                                        // speed of simulation; higher numbers are slower - default to 10
+let speed = 45;                                        // speed of simulation; higher numbers are slower - default to 10
 let minSpeed = 1;
 let maxSpeed = 60;
 

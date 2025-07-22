@@ -49,14 +49,18 @@ function drawGraphLines() {
   
   // Draw the graph lines using beginShape
   noFill();
+
+  push();
+  // TODO: fix this weird hack to get the lines to span the width of the graph
+  translate(2*barWidth,0);  // ensure our lines meet the bars at the right edge of the graph
   
   // Draw eagle line
   stroke(eaglesc);
   strokeWeight(2);
   beginShape();
   for (let i = 0; i < eaglesLine.length; i++) {
-    if (eaglesLine[i] < 1) { // Only draw points if they're valid
-      vertex(graphWidth - i * graphDensity, graphY + graphHeight * eaglesLine[i]);
+    if (eaglesLine[i] < 1) { // Only draw points if they're valid, as a % of 100
+      vertex(graphWidth - i * graphDensity , graphY + graphHeight * eaglesLine[i]);
     }
   }
   endShape();
@@ -82,6 +86,8 @@ function drawGraphLines() {
     }
   }
   endShape();
+
+  pop();
 }
 
 function drawPopulationBars() {
