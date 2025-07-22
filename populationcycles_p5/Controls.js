@@ -316,8 +316,4 @@ function drawControlArea() {
 //     eaglesi = 70;
 //   }
 // }
-
-// This function is now handled by drawControlArea
-function displayPresets() {
-  // Empty as this is now handled in drawSpeciesPanels
-} 
+//} 

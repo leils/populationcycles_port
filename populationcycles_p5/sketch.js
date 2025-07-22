@@ -5,14 +5,14 @@ function preload() {
   // In P5.js, we use the standard web fonts instead of Processing's PFont
   
   // Load help graphics
-  for (let i = 0; i < helpGraphic.length; i++) {
-    helpGraphic[i] = loadImage('data/help' + (i + 1) + '.png');
-  }
+  // for (let i = 0; i < helpGraphic.length; i++) {
+  //   helpGraphic[i] = loadImage('data/help' + (i + 1) + '.png');
+  // }
   
   // Load text tabs
-  for (let i = 0; i < txt.length; i++) {
-    txt[i] = loadImage('data/text/tab' + (i + 1) + '.png');
-  }
+  // for (let i = 0; i < txt.length; i++) {
+  //   txt[i] = loadImage('data/text/tab' + (i + 1) + '.png');
+  // }
   
   // Note: We don't need to load .vlw fonts in P5.js
   // We'll use web-safe fonts instead
@@ -77,7 +77,6 @@ function draw() {
   
   displaySimulation();
   displayGraph();
-  displayPresets();
 
   updateReactionText();
 

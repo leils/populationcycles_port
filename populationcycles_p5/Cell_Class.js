@@ -131,25 +131,29 @@ function render(id) {                                                 // draw th
     sim.fill(cells[id][2]);                                           // make it the correct color
     sim.stroke(cells[id][2]);
     
-    if (cellShape === 0) {                                            // then draw a circle if cellShape is set to 0
-      sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
-                  0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
-                  s, s);
-    }
-    else if (cellShape === 1) {                                       // or draw a square if cellShape is set to 1
-      let x = Math.floor(0.5 * s + (cells[id][0] % rowSize) * s);
-      let y = Math.floor(0.3 * s + Math.floor(cells[id][0] / rowSize) * s);
+
+    sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
+                0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
+                s, s);
+    // if (cellShape === 0) {                                            // then draw a circle if cellShape is set to 0
+    //   sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
+    //               0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
+    //               s, s);
+    // }
+    // else if (cellShape === 1) {                                       // or draw a square if cellShape is set to 1
+    //   let x = Math.floor(0.5 * s + (cells[id][0] % rowSize) * s);
+    //   let y = Math.floor(0.3 * s + Math.floor(cells[id][0] / rowSize) * s);
       
-      sim.set(x, y, cells[id][2]);
-      sim.set(x + 1, y, cells[id][2]);
-      sim.set(x, y + 1, cells[id][2]);
-      sim.set(x + 1, y + 1, cells[id][2]);
-      sim.set(x, y + 2, cells[id][2]);
-      sim.set(x + 1, y + 2, cells[id][2]);
-      sim.set(x + 2, y + 2, cells[id][2]);
-      sim.set(x + 2, y + 1, cells[id][2]);
-      sim.set(x + 2, y, cells[id][2]);
-    }
+    //   sim.set(x, y, cells[id][2]);
+    //   sim.set(x + 1, y, cells[id][2]);
+    //   sim.set(x, y + 1, cells[id][2]);
+    //   sim.set(x + 1, y + 1, cells[id][2]);
+    //   sim.set(x, y + 2, cells[id][2]);
+    //   sim.set(x + 1, y + 2, cells[id][2]);
+    //   sim.set(x + 2, y + 2, cells[id][2]);
+    //   sim.set(x + 2, y + 1, cells[id][2]);
+    //   sim.set(x + 2, y, cells[id][2]);
+    // }
   }
 }
 
@@ -164,50 +168,3 @@ function dead(id) {                                                   // check t
     return false;                                                     // cell is alive
   }
 }
-
-// function paintCells(paintedCellID) {
-//   fill(paintType);
-//   stroke(paintType);
-  
-//   let paintedCells = findNeighbors(paintedCellID);
-//   let paintedNeighbors;
-  
-//   if (frameCount % 3 === 0) {
-//     sim.push();
-//   }
-  
-//   for (let i = 0; i < 8; i++) {
-//     setType(cells[paintedCells[i]][0], paintType);
-    
-//     if (frameCount % 3 === 0) {
-//       render(cells[paintedCells[i]][0]);
-//     }
-    
-//     if (zoom > 300) {
-//       paintedNeighbors = findNeighbors(paintedCells[i]);
-//       for (let j = 0; j < 8; j++) {
-//         setType(cells[paintedNeighbors[j]][0], paintType);
-//         if (frameCount % 3 === 0) {
-//           render(cells[paintedNeighbors[j]][0]);
-//         }
-//       }
-//     }
-//   }
-  
-//   setType(cells[paintedCellID][0], paintType);
-  
-//   if (frameCount % 3 === 0) {
-//     render(cells[paintedCellID][0]);
-//     sim.updatePixels();
-//     renderedSim[0] = sim.get(0, 0, Math.floor(simWidth/2), sim.height);
-//     renderedSim[1] = sim.get(Math.floor(simWidth/2), 0, Math.floor(simWidth/2), sim.height);
-//     sim.pop();
-//   }
-  
-//   if (txtY <= txtMax) { 
-//     slideText = true;
-//     clickTimer = millis();
-//   }
-  
-//   showHelp = false;
-// } 

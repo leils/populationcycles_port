@@ -2,7 +2,7 @@
 let boldFont, normalFont, medFont, largeFont;
 let sim;
 let renderedSim = [null, null];
-let helpGraphic = [null, null, null, null];
+// let helpGraphic = [null, null, null, null];
 
 //-------------------------------- Defining Global Variables ----------------------------------//
 
@@ -11,7 +11,7 @@ let fullHeight = 1050;                                   // Height of entire win
 
 let zoom = 200;                                          // Level of detail of simulation, dictates size of cells, larger number fits more cels in simulation
 
-let cellShape = 0;                                       // 0 == circular cells; 1 == square cells;
+// let cellShape = 0;                                       // 0 == circular cells; 1 == square cells;
 let s = Math.floor(fullWidth / zoom);                   // size of each cell
 let step = 1;                                           // 0 == manual step; 1 == auto step;
 let speed = 10;                                        // speed of simulation; higher numbers are slower - default to 10
@@ -189,7 +189,7 @@ let tab1 = "TRY THIS";                                                          
 let tab2 = "WHAT'S GOING ON?";
 let tab3 = "REAL-WORLD STORY";
 
-let txt = [null, null, null];                                                           //Files for tabs
+// let txt = [null, null, null];                                                           //Files for tabs
 
 let tabNum = 0;                                                          //link to text file for default text to be displayed
 
