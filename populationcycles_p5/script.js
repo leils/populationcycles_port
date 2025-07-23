@@ -1,5 +1,6 @@
-// Initialize controls when the document is ready
-document.addEventListener('DOMContentLoaded', () => {
+// Wait for both DOM and p5.js to be ready
+window.addEventListener('load', () => {
+  // Initialize controls when the document is ready
   const resetBtn = document.getElementById('reset-btn');
   const playBtn = document.getElementById('play-btn');
   const speedSlider = document.getElementById('speed-slider');

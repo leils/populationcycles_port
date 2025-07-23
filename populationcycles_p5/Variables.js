@@ -4,15 +4,26 @@ let renderedSim = [null, null];
 
 //-------------------------------- Defining Global Variables ----------------------------------//
 
-let fullWidth = 1680;                                    // Width of entire window
-let fullHeight = 1050;                                   // Height of entire window
+// Window dimensions
+let fullWidth = window.innerWidth;
+let fullHeight = window.innerHeight;
 
-let zoom = 200;                                          // Level of detail of simulation, dictates size of cells, larger number fits more cels in simulation
+// Simulation dimensions (95% width, top 2/3 height)
+let simWidth = fullWidth * 0.95;
+let simHeight = fullHeight * 0.66;
+let simX = (fullWidth - simWidth) / 2;  // Center horizontally
+let simY = fullHeight * 0.02;           // Small top margin
 
-// let cellShape = 0;                                       // 0 == circular cells; 1 == square cells;
-let s = Math.floor(fullWidth / zoom);                   // size of each cell
-let step = 1;                                           // 0 == manual step; 1 == auto step;
-let speed = 45;                                        // speed of simulation; higher numbers are slower - default to 10
+// Graph dimensions (50% width, bottom 1/3 height)
+let graphWidth = fullWidth * 0.5;
+let graphHeight = fullHeight * 0.32;    // Bottom 1/3 minus margins
+let graphX = (fullWidth - graphWidth) / 2;  // Center horizontally
+let graphY = simHeight + simY * 2;      // Position below simulation
+
+let zoom = 200;                                          // Level of detail of simulation
+let s = Math.floor(simWidth / zoom);                    // size of each cell
+let step = 1;                                           // 0 == manual step; 1 == auto step
+let speed = 10;                                         // speed of simulation
 let minSpeed = 1;
 let maxSpeed = 60;
 
@@ -51,7 +62,7 @@ Strong Eagles: 4 4 7 - 40  40  70
 
 */
 
-//------------------------------ Defining Color Name Variables --------------------------------//
+//------------------------------ Color Variables --------------------------------//
 
 let grainc;
 let micec; 
@@ -87,17 +98,17 @@ asterisk indicates palate is ok for most colorblindness
 
 //----------------------- Defining position and size of each section --------------------------//
 
-let simX = fullWidth * 0.01;                               // simulation position X
-let simY = fullHeight * 0.02;                               // simulation position Y
-let simWidth = fullWidth - 2 * simX;                        // width of simulation
-let simHeight = fullHeight * 0.65 - simY;                      // height of simulation
+// let simX = fullWidth * 0.01;                               // simulation position X
+// let simY = fullHeight * 0.02;                               // simulation position Y
+// let simWidth = fullWidth - 2 * simX;                        // width of simulation
+// let simHeight = fullHeight * 0.65 - simY;                      // height of simulation
 
-let txtY = fullHeight - 50;                                // Required for graph height calculation
+// let txtY = fullHeight - 50;                                // Required for graph height calculation
 
-let graphX = simX * 0.25;                                      // graph position X
-let graphY = simHeight + simY;                          // graph position Y
-let graphWidth = fullWidth * 0.48;                              // width of graph
-let graphHeight = fullHeight - simY * 2 - simHeight - (fullHeight - txtY);  // height of graph
+// let graphX = simX * 0.25;                                      // graph position X
+// let graphY = simHeight + simY;                          // graph position Y
+// let graphWidth = fullWidth * 0.48;                              // width of graph
+// let graphHeight = fullHeight - simY * 2 - simHeight - (fullHeight - txtY);  // height of graph
 
 
 //----------------------------- Graph Variables ---------------------------------//
