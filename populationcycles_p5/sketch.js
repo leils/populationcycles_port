@@ -101,6 +101,25 @@ function globalSetupOperations() {
   setPalette(cellPalate);
 }
 
+function fullReset() {
+  grainSpan = defaultGrainSpan;       // grain lifespan (in generation number)
+  miceSpan = defaultMiceSpan;        // mice lifespan (in generation number)
+  eagleSpan = defaultEagleSpan;      // eagle lifespan (in generation number)
+
+  grainGrowth = defaultGrainGrowth;     // Percent chance of grain growth given correct parameters
+  miceGrowth = defaultMiceGrowth;       // Percent chance of mice growth given correct parameters
+  eagleGrowth = defaultEagleGrowth;     // Percent chance of eagle growth given correct parameters
+
+  grainLine.fill(graphY + graphHeight - 2);
+  miceLine.fill(graphY + graphHeight - 2);
+  eaglesLine.fill(graphY + graphHeight - 2);
+  heatWaveMarkers = [];
+
+  seedSimulation();
+  runSimulation();
+  graphCells();
+}
+
 function setPalette(paletteNum) {
   // Set color based on palate choice
   switch(paletteNum) {
