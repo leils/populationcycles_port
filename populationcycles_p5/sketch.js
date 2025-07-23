@@ -1,5 +1,4 @@
 // Main sketch file for Population Cycles
-
 function preload() {
 }
 
@@ -8,7 +7,7 @@ function setup() {
   createCanvas(fullWidth, fullHeight);
   background(0);
   
-  // Create sim as an offscreen graphics buffer (equivalent to PGraphics in Processing)
+  // Create sim as an offscreen graphics buffer
   sim = createGraphics(Math.floor(simWidth), Math.floor(simHeight));
   sim.background(0);
   
@@ -20,6 +19,33 @@ function setup() {
   seedSimulation();
   runSimulation();
   graphCells();
+}
+
+function windowResized() {
+  // Update dimensions
+  fullWidth = windowWidth;
+  fullHeight = windowHeight;
+  
+  // Update simulation dimensions
+  simWidth = fullWidth * 0.95;
+  simHeight = fullHeight * 0.66;
+  simX = (fullWidth - simWidth) / 2;
+  simY = fullHeight * 0.02;
+  
+  // Update graph dimensions
+  graphWidth = fullWidth * 0.5;
+  graphHeight = fullHeight * 0.32;
+  graphX = (fullWidth - graphWidth) / 2;
+  graphY = simHeight + simY * 2;
+  
+  // Update dependent variables
+  s = Math.floor(simWidth / zoom);
+  graphDensity = Math.floor(graphWidth / graphMaxPoints);
+  barWidth = graphWidth / graphMaxPoints;
+  
+  // Resize canvases
+  resizeCanvas(fullWidth, fullHeight);
+  // sim.resizeCanvas(Math.floor(simWidth), Math.floor(simHeight));
 }
 
 function draw() {
@@ -91,11 +117,12 @@ function globalSetupOperations() {
   // TODO: fix this weird hack to get the lines to span the width of the graph
   let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
   
-  grainLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
-  miceLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
-  eaglesLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
+  grainLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
+  miceLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
+  eaglesLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
   
-  graphHeight = fullHeight - simY * 2 - simHeight - (fullHeight - txtY);
+  // TODO: wat 
+  graphHeight = fullHeight - (simY * 2) - simHeight - (fullHeight - txtY);
   
   // Set color based on palate choice
   setPalette(cellPalate);
