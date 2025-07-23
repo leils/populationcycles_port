@@ -3,8 +3,8 @@ body {
   padding: 0;
   background-color: #000;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   height: 100vh;
   overflow: hidden;
 }
@@ -20,9 +20,10 @@ canvas {
 }
 
 .ui-container {
+  padding: 12px;
   position: relative;
-  grid-column: 7 / 11;  /* Start halfway (7) and span 4 columns */
-  grid-row: 9 / 10;     /* Position at 3/4 down (row 9) */
+  grid-column: 2 / 3;  /* Start halfway (7) and span 4 columns */
+  grid-row: 3/4;     /* Position at 3/4 down (row 9) */
   display: flex;
   flex-direction: column;
   gap: 10px;

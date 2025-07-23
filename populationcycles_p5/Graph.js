@@ -1,5 +1,5 @@
 function graphCells() {
-  // Define bars at left
+  // Define bars: species percentage of total cells 
   grainBar = 1 - norm(graincount, 0, maxcells);
   miceBar = 1 - norm(micecount, 0, maxcells);
   eaglesBar = 1 - norm(eaglescount, 0, maxcells);
@@ -11,10 +11,14 @@ function graphCells() {
     eaglesLine[i] = eaglesLine[i-1]; 
   }
   
+  // TODO: i'm pretty sure I need to rewrite these bars to index from 0 and just count up ... somewhat like the heat wave markers 
+  // I think this is counting weirdly because of ... processing? limitations?? 
   // Add new count values
-  grainLine[Math.floor(graphX + 1)] = grainBar;
-  miceLine[Math.floor(graphX + 1)] = miceBar;
-  eaglesLine[Math.floor(graphX + 1)] = eaglesBar;
+  grainLine[0] = grainBar;
+  miceLine[0] = miceBar;
+  eaglesLine[0] = eaglesBar;
+
+  debugger;
 
   // Shift heat wave markers with the graph
   for (let i = 0; i < heatWaveMarkers.length; i++) {
@@ -67,15 +71,16 @@ function drawGraphLines() {
 
   push();
   // TODO: fix this weird hack to get the lines to span the width of the graph
-  translate(2*barWidth,0);  // ensure our lines meet the bars at the right edge of the graph
+  translate(-2*barWidth,0);  // ensure our lines meet the bars at the right edge of the graph
   
   // Draw eagle line
   stroke(eaglesc);
   strokeWeight(2);
+  // console.log("X: ", graphWidth , "Y unconverted:", eaglesLine[0], " Y converted:", graphY + graphHeight * eaglesLine[0]);
   beginShape();
   for (let i = 0; i < eaglesLine.length; i++) {
     if (eaglesLine[i] < 1) { // Only draw points if they're valid, as a % of 100
-      vertex(graphWidth - i * graphDensity , graphY + graphHeight * eaglesLine[i]);
+      vertex(graphWidth - (i * graphDensity) , graphY + (graphHeight * eaglesLine[i]));
     }
   }
   endShape();
@@ -86,7 +91,7 @@ function drawGraphLines() {
   beginShape();
   for (let i = 0; i < miceLine.length; i++) {
     if (miceLine[i] < 1) { // Only draw points if they're valid
-      vertex(graphWidth - i * graphDensity, graphY + graphHeight * miceLine[i]);
+      vertex(graphWidth - (i * graphDensity) , graphY + (graphHeight * miceLine[i]));
     }
   }
   endShape();
@@ -97,7 +102,7 @@ function drawGraphLines() {
   beginShape();
   for (let i = 0; i < grainLine.length; i++) {
     if (grainLine[i] < 1) { // Only draw points if they're valid
-      vertex(graphWidth - i * graphDensity, graphY + graphHeight * grainLine[i]);
+      vertex(graphWidth - (i * graphDensity) , graphY + (graphHeight * grainLine[i]));
     }
   }
   endShape();

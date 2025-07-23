@@ -40,12 +40,12 @@ function windowResized() {
   
   // Update dependent variables
   s = Math.floor(simWidth / zoom);
-  graphDensity = Math.floor(graphWidth / 100);
-  barWidth = graphWidth / 100;
+  graphDensity = Math.floor(graphWidth / graphMaxPoints);
+  barWidth = graphWidth / graphMaxPoints;
   
   // Resize canvases
   resizeCanvas(fullWidth, fullHeight);
-  sim.resizeCanvas(Math.floor(simWidth), Math.floor(simHeight));
+  // sim.resizeCanvas(Math.floor(simWidth), Math.floor(simHeight));
 }
 
 function draw() {
@@ -117,11 +117,12 @@ function globalSetupOperations() {
   // TODO: fix this weird hack to get the lines to span the width of the graph
   let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
   
-  grainLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
-  miceLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
-  eaglesLine = new Array(Math.floor(graphLineArrayLength)).fill(graphY + graphHeight - 2);
+  grainLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
+  miceLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
+  eaglesLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
   
-  graphHeight = fullHeight - simY * 2 - simHeight - (fullHeight - txtY);
+  // TODO: wat 
+  graphHeight = fullHeight - (simY * 2) - simHeight - (fullHeight - txtY);
   
   // Set color based on palate choice
   setPalette(cellPalate);

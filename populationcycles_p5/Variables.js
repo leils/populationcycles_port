@@ -17,7 +17,8 @@ let simY = fullHeight * 0.02;           // Small top margin
 // Graph dimensions (50% width, bottom 1/3 height)
 let graphWidth = fullWidth * 0.5;
 let graphHeight = fullHeight * 0.32;    // Bottom 1/3 minus margins
-let graphX = (fullWidth - graphWidth) / 2;  // Center horizontally
+// let graphX = (fullWidth - graphWidth) / 2;  // Center horizontally
+let graphX = fullWidth * 0.5; // Right end of graph should line up with the center of the screen? 
 let graphY = simHeight + simY * 2;      // Position below simulation
 
 let zoom = 200;                                          // Level of detail of simulation
@@ -128,8 +129,9 @@ let eaglesLine;
 // Array to store positions of heat wave events in the graph
 let heatWaveMarkers = [];
 
-let graphDensity = Math.floor(graphWidth / 100);    // graph line density 
-let barWidth = graphWidth / 100;                         // Define width of bars at left of graph
+let graphMaxPoints = 100;
+let graphDensity = Math.floor(graphWidth / graphMaxPoints);    // graph line density 
+let barWidth = graphWidth / graphMaxPoints;                         // Define width of bars at left of graph
 
 //------------------------------- Message Variables ---------------------------------------//
 
