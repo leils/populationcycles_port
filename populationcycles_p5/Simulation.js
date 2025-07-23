@@ -9,28 +9,28 @@ function seedSimulation() {
     let r = random(1);
     if (r < 0.25) { 
       c = eaglesc; 
-      st = eagless; 
-      intel = eaglesi;
+      st = eagleSpan; 
+      intel = eagleGrowth;
       
       eaglescount++;
         
     }                                                                       // 25% chance for eagles
     else if (r < 0.50) { 
       c = micec; 
-      st = mices; 
-      intel = micei;
+      st = miceSpan; 
+      intel = miceGrowth;
       
       micecount++;
       
     }                                                                       // 25% chance for mice (50% - the 25% for eagles)
     else if (r < 0.75) { 
       c = grainc; 
-      st = grains; 
-      intel = grainsi;
+      st = grainSpan; 
+      intel = grainGrowth;
       
       graincount++;
       
-    }                                                                     // 25% chance for grains (75% - the 50% for mice)
+    }                                                                     // 25% chance for grainSpan (75% - the 50% for mice)
 
 
     cells[i-1][0] = i-1;

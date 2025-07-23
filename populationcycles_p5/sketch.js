@@ -20,53 +20,6 @@ function setup() {
   seedSimulation();
   runSimulation();
   graphCells();
-
-  // --- HTML Controls Integration ---
-  const resetBtn = document.getElementById('reset-btn');
-  const playBtn = document.getElementById('play-btn');
-  const speedSlider = document.getElementById('speed-slider');
-  const heatWaveBtn = document.getElementById('heat-wave-btn');
-
-  if (resetBtn) {
-    resetBtn.onclick = () => {
-      grains = defaultGrains;       // grain lifespan (in generation number)
-      mices = defaultMice;        // mice lifespan (in generation number)
-      eagless = defaultEagles;      // eagle lifespan (in generation number)
-
-      grainsi = defaultgrainsi;     // Percent chance of grain growth given correct parameters
-      micei = defaultmicei;       // Percent chance of mice growth given correct parameters
-      eaglesi = defaulteaglesi;     // Percent chance of eagle growth given correct parameters
-
-      seedSimulation();
-      runSimulation();
-      graphCells();
-    };
-  }
-  if (playBtn) {
-    playBtn.onclick = () => {
-      step = 1 - step;
-      playBtn.textContent = step ? 'Pause' : 'Play';
-    };
-    playBtn.textContent = step ? 'Pause' : 'Play';
-  }
-  if (speedSlider) {
-    speedSlider.oninput = (e) => {
-      speed = parseInt(e.target.value, 10);
-    };
-    speedSlider.value = speed;
-  }
-  if (heatWaveBtn) {
-    heatWaveBtn.onclick = () => {
-      markHeatWave();
-      // Apply Weak Grain preset
-      grains = 2; //reduce grain
-      mices = 5;
-      eagless = 5;
-      grainsi = 20; // reduce grain intelligence
-      micei = 50;
-      eaglesi = 50;
-    };
-  }
 }
 
 function draw() {

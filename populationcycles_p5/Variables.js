@@ -18,23 +18,23 @@ let maxSpeed = 60;
 
 //------------------------------ Defining User-input Variables ---------------------------------//
 
-let wallss = 500;     // Walls lifespan
+let wallSpan = 500;     // Walls lifespan
 
-let defaultGrains = 5;
-let defaultMice = 5;
-let defaultEagles = 5;
+let defaultGrainSpan = 5;
+let defaultMiceSpan = 5;
+let defaultEagleSpan = 5;
 
-let defaultgrainsi = 50;
-let defaultmicei = 50;
-let defaulteaglesi = 50;
+let defaultGrainGrowth = 50;
+let defaultMiceGrowth = 50;
+let defaultEagleGrowth = 50;
 
-let grains = defaultGrains;       // grain lifespan (in generation number)
-let mices = defaultMice;        // mice lifespan (in generation number)
-let eagless = defaultEagles;      // eagle lifespan (in generation number)
+let grainSpan = defaultGrainSpan;       // grain lifespan (in generation number)
+let miceSpan = defaultMiceSpan;        // mice lifespan (in generation number)
+let eagleSpan = defaultEagleSpan;      // eagle lifespan (in generation number)
 
-let grainsi = defaultgrainsi;     // Percent chance of grain growth given correct parameters
-let micei = defaultmicei;       // Percent chance of mice growth given correct parameters
-let eaglesi = defaulteaglesi;     // Percent chance of eagle growth given correct parameters
+let grainGrowth = defaultGrainGrowth;     // Percent chance of grain growth given correct parameters
+let miceGrowth = defaultMiceGrowth;       // Percent chance of mice growth given correct parameters
+let eagleGrowth = defaultEagleGrowth;     // Percent chance of eagle growth given correct parameters
 
 /* PRESETS
 

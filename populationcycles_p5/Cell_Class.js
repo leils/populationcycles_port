@@ -103,22 +103,22 @@ function setType(id, newType) {                                       // if neig
                                                                       // this is the function to convert the consumed neighbor cell
   if (newType === grainc) {
     cells[id][2] = grainc;
-    cells[id][1] = grains;
-    cells[id][3] = grainsi;
+    cells[id][1] = grainSpan;
+    cells[id][3] = grainGrowth;
   }
   else if (newType === micec) {
     cells[id][2] = micec;
-    cells[id][1] = mices;
-    cells[id][3] = micei;
+    cells[id][1] = miceSpan;
+    cells[id][3] = miceGrowth;
   }
   else if (newType === eaglesc) {
     cells[id][2] = eaglesc;
-    cells[id][1] = eagless;
-    cells[id][3] = eaglesi;
+    cells[id][1] = eagleSpan;
+    cells[id][3] = eagleGrowth;
   }
   else if (newType === wallsc) {
     cells[id][2] = newType;
-    cells[id][1] = wallss;
+    cells[id][1] = wallSpan;
   }
 }
 
