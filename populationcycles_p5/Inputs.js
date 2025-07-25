@@ -6,6 +6,38 @@ function keyPressed() {
   if (key === ' ') {
     step = 1 - step;
   }
+
+  if (key === '1') {
+    console.log('scenario 1 - heat wave, weak grain');
+     markHeatWave();
+    // Apply Weak Grain preset
+    grainSpan = 2; //reduce grain lifespan
+    miceSpan = 5;
+    eagleSpan = 5;
+    grainGrowth = 20; // reduce grain growth chance
+    miceGrowth = 50;
+    eagleGrowth = 50;
+  }
+
+  if (key === '2') {
+    console.log('scenario 2 - stronger mice introduced');
+    grainSpan = 5;
+    miceSpan = 8;
+    eagleSpan = 5;
+    grainGrowth = 50; 
+    miceGrowth = 80;
+    eagleGrowth = 50;
+  }
+
+  if (key === '3') {
+    console.log('scenario 3 - eagles suffer disease');
+    grainSpan = 5;
+    miceSpan = 5;
+    eagleSpan = 2;
+    grainGrowth = 50; 
+    miceGrowth = 50;
+    eagleGrowth = 20;
+  }
   
   // // Arrow keys control speed
   // if (keyCode === RIGHT_ARROW) {
@@ -16,9 +48,7 @@ function keyPressed() {
   
   // 'r' key resets simulation
   if (key === 'r') {
-    seedSimulation();
-    runSimulation();
-    graphCells();
+    fullReset();
   }
   
   // 'c' key cycles color palettes if in debug mode
