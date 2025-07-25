@@ -46,6 +46,25 @@ function displaySimulation() {                                         // displa
   image(renderedSim[1], simX + renderedSim[0].width, simY, renderedSim[1].width, renderedSim[1].height);
 }
 
+function runRecovery () {
+  // Species slowly return to "normal" over time 
+  if (generationCount % spanRecoveryRate == 0) {
+    if (grainSpan != midSpan) {
+      let increment = grainSpan > midSpan ? -1 : 1; 
+      grainSpan += increment;
+    }
+  }
+
+  if (generationCount % growthRecoveryRate == 0) {
+    if (grainGrowth!= midGrowth) {
+      let increment = grainGrowth > midGrowth? -1 : 1; 
+      grainGrowth += increment;
+    }
+
+    console.log(grainGrowth);
+  }
+}
+
 
 function runSimulation() {
   graincount = 0;                                                        // keeping track of cell counts
@@ -90,6 +109,10 @@ function runSimulation() {
     
   renderedSim[0] = sim.get(0, 0, Math.floor(simWidth/2), sim.height);
   renderedSim[1] = sim.get(Math.floor(simWidth/2), 0, Math.floor(simWidth/2), sim.height);
+
+  if (recoveryOn) {
+    runRecovery();
+  }
   
   generationCount++;                                                   // increase generation count
 }

@@ -18,8 +18,6 @@ function graphCells() {
   miceLine[0] = miceBar;
   eaglesLine[0] = eaglesBar;
 
-  debugger;
-
   // Shift heat wave markers with the graph
   for (let i = 0; i < heatWaveMarkers.length; i++) {
     heatWaveMarkers[i]++;
@@ -76,7 +74,6 @@ function drawGraphLines() {
   // Draw eagle line
   stroke(eaglesc);
   strokeWeight(2);
-  // console.log("X: ", graphWidth , "Y unconverted:", eaglesLine[0], " Y converted:", graphY + graphHeight * eaglesLine[0]);
   beginShape();
   for (let i = 0; i < eaglesLine.length; i++) {
     if (eaglesLine[i] < 1) { // Only draw points if they're valid, as a % of 100

@@ -14,10 +14,10 @@ window.addEventListener('load', () => {
 
   if (playBtn) {
     playBtn.onclick = () => {
-      step = 1 - step;
-      playBtn.textContent = step ? 'Pause' : 'Play';
+      play = !play;
+      playBtn.textContent = play ? 'Pause' : 'Play';
     };
-    playBtn.textContent = step ? 'Pause' : 'Play';
+    playBtn.textContent = play ? 'Pause' : 'Play';
   }
 
   if (speedSlider) {

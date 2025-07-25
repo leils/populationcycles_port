@@ -45,13 +45,14 @@ function windowResized() {
   
   // Resize canvases
   resizeCanvas(fullWidth, fullHeight);
-  // sim.resizeCanvas(Math.floor(simWidth), Math.floor(simHeight));
+  // sim.resizeCanvas(Math.floor(simWidth), Math.floor(simHeight)); // necessary? 
 }
 
 function draw() {
-  // Note: Speed seems to be what we're DIVIDING the framecount by, not like ... how often we're updating the sim
-  let updateRate = 61-speed;
-  if (step == 1 && frameCount % updateRate == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
+  // TODO: re-write speed and updateRate to be easier to read
+  // run simulation every 'speed' frames
+  let updateRate = 11-speed;
+  if (play && frameCount % updateRate == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
     runSimulation();
     graphCells();
     timer = millis();
@@ -129,13 +130,13 @@ function globalSetupOperations() {
 }
 
 function fullReset() {
-  grainSpan = defaultGrainSpan;       // grain lifespan (in generation number)
-  miceSpan = defaultMiceSpan;        // mice lifespan (in generation number)
-  eagleSpan = defaultEagleSpan;      // eagle lifespan (in generation number)
+  grainSpan = midSpan;       // grain lifespan (in generation number)
+  miceSpan = midSpan;        // mice lifespan (in generation number)
+  eagleSpan = midSpan;      // eagle lifespan (in generation number)
 
-  grainGrowth = defaultGrainGrowth;     // Percent chance of grain growth given correct parameters
-  miceGrowth = defaultMiceGrowth;       // Percent chance of mice growth given correct parameters
-  eagleGrowth = defaultEagleGrowth;     // Percent chance of eagle growth given correct parameters
+  grainGrowth = midGrowth;     // Percent chance of grain growth given correct parameters
+  miceGrowth = midGrowth;       // Percent chance of mice growth given correct parameters
+  eagleGrowth = midGrowth;     // Percent chance of eagle growth given correct parameters
 
   grainLine.fill(graphY + graphHeight - 2);
   miceLine.fill(graphY + graphHeight - 2);

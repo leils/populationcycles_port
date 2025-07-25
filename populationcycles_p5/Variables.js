@@ -1,4 +1,5 @@
-// Font variables
+// TODO: Many of these should really be in a config file, not "variables"
+
 let sim;
 let renderedSim = [null, null];
 
@@ -23,30 +24,36 @@ let graphY = simHeight + simY * 2;      // Position below simulation
 
 let zoom = 200;                                          // Level of detail of simulation
 let s = Math.floor(simWidth / zoom);                    // size of each cell
-let step = 1;                                           // 0 == manual step; 1 == auto step
-let speed = 10;                                         // speed of simulation
-let minSpeed = 1;
-let maxSpeed = 60;
+let play = true;
+let speed = 6;                                         // speed of simulation
+const minSpeed = 2;
+const maxSpeed = 10;
+
+// ----------------------------- Variables for input testing -----------------------------------//
+
+let recoveryOn = false;
+let spanRecoveryRate = 50; // Recover increments every X generations
+let growthRecoveryRate = 1; // Recover increments every X generations
+
+const lowSpan = 2;
+const midSpan = 5;
+const highSpan = 8;
+
+const lowgrowth = 20;
+const midGrowth = 50;
+const highGrowth = 80;
 
 //------------------------------ Defining User-input Variables ---------------------------------//
 
 let wallSpan = 500;     // Walls lifespan
 
-let defaultGrainSpan = 5;
-let defaultMiceSpan = 5;
-let defaultEagleSpan = 5;
+let grainSpan = midSpan;       // grain lifespan (in generation number)
+let miceSpan = midSpan;        // mice lifespan (in generation number)
+let eagleSpan = midSpan;      // eagle lifespan (in generation number)
 
-let defaultGrainGrowth = 50;
-let defaultMiceGrowth = 50;
-let defaultEagleGrowth = 50;
-
-let grainSpan = defaultGrainSpan;       // grain lifespan (in generation number)
-let miceSpan = defaultMiceSpan;        // mice lifespan (in generation number)
-let eagleSpan = defaultEagleSpan;      // eagle lifespan (in generation number)
-
-let grainGrowth = defaultGrainGrowth;     // Percent chance of grain growth given correct parameters
-let miceGrowth = defaultMiceGrowth;       // Percent chance of mice growth given correct parameters
-let eagleGrowth = defaultEagleGrowth;     // Percent chance of eagle growth given correct parameters
+let grainGrowth = midGrowth;     // Percent chance of grain growth given correct parameters
+let miceGrowth = midGrowth;       // Percent chance of mice growth given correct parameters
+let eagleGrowth = midGrowth;     // Percent chance of eagle growth given correct parameters
 
 /* PRESETS
 
@@ -135,12 +142,12 @@ let barWidth = graphWidth / graphMaxPoints;                         // Define wi
 
 //------------------------------- Message Variables ---------------------------------------//
 
-let rtAllDead = "Everything extinct!";
-let rtGrainDead = "Grain extinct! No food for the mice!";
-let rtMiceDead = "Mice extinct! No food for the eagles!";
-let rtEaglesDead = "Eagles extinct! With no one to eat the mice, will grain survive?";
-let rtMiceEaglesDead = "Mice and eagles extinct! Grain rules the world!";
-let rtTooLong = "Reached 1,000 generations, let's start over and see what happens.";
+const rtAllDead = "Everything extinct!";
+const rtGrainDead = "Grain extinct! No food for the mice!";
+const rtMiceDead = "Mice extinct! No food for the eagles!";
+const rtEaglesDead = "Eagles extinct! With no one to eat the mice, will grain survive?";
+const rtMiceEaglesDead = "Mice and eagles extinct! Grain rules the world!";
+const rtTooLong = "Reached 1,000 generations, let's start over and see what happens.";
 
 // Text and tab variables that are needed bc the some remnants still rely on them
 let tabHeight = 50;

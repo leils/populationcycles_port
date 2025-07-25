@@ -4,7 +4,16 @@
 function keyPressed() {
   // Space bar toggles pause/play
   if (key === ' ') {
-    step = 1 - step;
+    play = !play;
+  }
+
+  if (key == '0') {
+    recoveryOn = !recoveryOn;
+    if (recoveryOn) {
+      console.log('Recovery mode on');
+    } else {
+      console.log('Recovery mode off');
+    }
   }
 
   if (key === '1') {
@@ -21,6 +30,7 @@ function keyPressed() {
 
   if (key === '2') {
     console.log('scenario 2 - stronger mice introduced');
+    markHeatWave(); // TODO: change this to a different color marker or something
     grainSpan = 5;
     miceSpan = 8;
     eagleSpan = 5;
@@ -31,6 +41,7 @@ function keyPressed() {
 
   if (key === '3') {
     console.log('scenario 3 - eagles suffer disease');
+    markHeatWave(); // TODO: change this to a different color marker or something
     grainSpan = 5;
     miceSpan = 5;
     eagleSpan = 2;
