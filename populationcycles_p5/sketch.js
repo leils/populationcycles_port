@@ -63,12 +63,19 @@ function draw() {
   displayGraph();
 
   updateReactionText();
+  updateGenerationText();
 
   // Display debug info in the console
   // console.log("FPS: " + Math.floor(frameRate()) + " — Generation: " + generationCount + 
   //             " - Total Cells: " + maxcells + " with " + graincount + " grain, " + 
   //             micecount + " mice, and " + eaglescount + " eagles     cell size: " + 
   //             s + " speed: " + speed + " zoom: " + zoom);
+}
+
+function updateGenerationText() {
+  const generationDiv = document.getElementById('generation-text');
+  if (!generationDiv) console.log('what');
+  generationDiv.textContent = "Generations: " + generationCount;
 }
 
 function updateReactionText() {

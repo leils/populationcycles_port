@@ -67,6 +67,11 @@ canvas {
   background: linear-gradient(45deg, #ff6b6d, #fae042) !important;
 }
 
+#generation-text {
+  color: #ffe680;
+  text-align: right;
+}
+
 #reaction-text {
   color: #ffe680;
   background: rgba(30,30,30,0.85);
