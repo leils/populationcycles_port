@@ -74,16 +74,15 @@ function draw() {
 
 function updateGenerationText() {
   const generationDiv = document.getElementById('generation-text');
-  if (!generationDiv) console.log('what');
   generationDiv.textContent = "Generations: " + generationCount;
 }
 
 function updateReactionText() {
   const reactionDiv = document.getElementById('reaction-text');
-  if (!reactionDiv) return;
 
   let message = "";
   if (graincount === 0 && micecount === 0 && eaglescount === 0) {
+    play = false; // pause on all species extinction
     message = rtAllDead;
   } else if (graincount === 0) {
     message = rtGrainDead;
@@ -153,6 +152,8 @@ function fullReset() {
   seedSimulation();
   runSimulation();
   graphCells();
+
+  generationCount = 0;
 }
 
 function setPalette(paletteNum) {

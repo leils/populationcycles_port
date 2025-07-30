@@ -57,6 +57,18 @@ canvas {
   background: #444;
 }
 
+#invasive-mice-btn {
+  background-color: #C8C8C8 !important; 
+  color: black !important;
+  font-weight: bold;
+}
+
+#eagle-disease-btn {
+  background-color: #015D6F !important;
+  color: white !important;
+  font-weight: bold;
+}
+
 #heat-wave-btn {
   background: linear-gradient(45deg, #ff4e50, #f9d423) !important;
   color: #000 !important;
@@ -72,7 +84,7 @@ canvas {
   text-align: right;
 }
 
-#reaction-text {
+.text {
   color: #ffe680;
   background: rgba(30,30,30,0.85);
   padding: 8px 16px;
@@ -82,6 +94,10 @@ canvas {
   min-height: 1.5em;
   font-family: Arial, sans-serif;
   pointer-events: none;
+}
+
+#reaction-text {
+  color: red;
   opacity: 0;
   transition: opacity 0.3s ease;
 }

@@ -5,17 +5,22 @@ window.addEventListener('load', () => {
   const playBtn = document.getElementById('play-btn');
   const speedSlider = document.getElementById('speed-slider');
   const heatWaveBtn = document.getElementById('heat-wave-btn');
+  const invasiveMiceBtn = document.getElementById('invasive-mice-btn');
+  const eagleDiseaseBtn = document.getElementById('eagle-disease-btn');
+
+  const textDiv = document.getElementById('event-text');
 
   if (resetBtn) {
     resetBtn.onclick = () => {
       fullReset();
+      textDiv.textContent = "Fresh start!";
     };
   }
 
   if (playBtn) {
     playBtn.onclick = () => {
       play = !play;
-      playBtn.textContent = play ? 'Pause' : 'Play';
+      playBtn.textContent = play ? 'Pause' : 'Play'; // TODO: this should be responsive in Electron
     };
     playBtn.textContent = play ? 'Pause' : 'Play';
   }
@@ -37,6 +42,36 @@ window.addEventListener('load', () => {
       grainGrowth = 20; // reduce grain growth chance
       miceGrowth = 50;
       eagleGrowth = 50;
+
+      textDiv.textContent = "A heat wave strikes; grain has a harder time growing.";
     };
+  }
+
+  if (invasiveMiceBtn) {
+    invasiveMiceBtn.onclick = () => {
+      markHeatWave();
+      grainSpan = 5; //reduce grain lifespan
+      miceSpan = 7;
+      eagleSpan = 5;
+      grainGrowth = 50; // reduce grain growth chance
+      miceGrowth = 70;
+      eagleGrowth = 50;
+
+      textDiv.textContent = "A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.";
+    }
+  }
+
+  if (eagleDiseaseBtn) {
+    eagleDiseaseBtn.onclick = () => {
+      markHeatWave();
+      grainSpan = 5; //reduce grain lifespan
+      miceSpan = 5;
+      eagleSpan = 2;
+      grainGrowth = 50; // reduce grain growth chance
+      miceGrowth = 50;
+      eagleGrowth = 20;
+
+      textDiv.textContent = "A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.";    
+    }
   }
 }); 
