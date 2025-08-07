@@ -32,8 +32,12 @@ canvas {
 
 #key {
   position: absolute;
-  width: 200px;
-  background: rgba(30,30,30,0.8);
+  margin: 16px;
+  left: 0; 
+  right: 0; 
+  margin-inline: auto; 
+  width: fit-content;
+  background: black;
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -99,10 +103,23 @@ canvas {
   text-align: right;
 }
 
+#event-text {
+  position: absolute;
+  margin: 16px;
+  left: 0; 
+  right: 0; 
+  top: 30vh;
+  margin-inline: auto; 
+  max-width: 50vw;
+  text-align: center;
+  display: none;
+  transition: opacity 0.5s ease;
+}
+
 .text {
   color: #ffe680;
-  background: rgba(30,30,30,0.85);
-  padding: 8px 16px;
+  background: black;
+  padding: 16px 16px;
   border-radius: 8px;
   font-size: 1.1em;
   min-width: 320px;

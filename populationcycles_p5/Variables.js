@@ -2,6 +2,7 @@
 
 let sim;
 let renderedSim = [null, null];
+let lastMessage = "";
 
 //-------------------------------- Defining Global Variables ----------------------------------//
 

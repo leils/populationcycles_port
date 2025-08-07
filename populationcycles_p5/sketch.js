@@ -50,7 +50,7 @@ function windowResized() {
 
 function draw() {
   // TODO: re-write speed and updateRate to be easier to read
-  // run simulation every 'speed' frames
+  // We run the simulation every 'speed' frames
   let updateRate = 11-speed;
   if (play && frameCount % updateRate == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
     runSimulation();
@@ -77,8 +77,8 @@ function updateGenerationText() {
   generationDiv.textContent = "Generations: " + generationCount;
 }
 
+// TODO: consolidate with the function in script.js
 function updateReactionText() {
-  const reactionDiv = document.getElementById('reaction-text');
 
   let message = "";
   if (graincount === 0 && micecount === 0 && eaglescount === 0) {
@@ -94,9 +94,27 @@ function updateReactionText() {
     message = rtEaglesDead;
   } else if (generationCount >= 1000) {
     message = rtTooLong;
+  } else {
+    return;
+  }
+  // TODO: this is a quick hack to make sure we're not running this change every frame. 
+  // Should try and make this more efficient
+  if (lastMessage != message) {
+    updateText(message, "red");
+    lastMessage = message;
+
+    // const eventDiv = document.getElementById('event-text');
+    // eventDiv.style.color = "red";
+    // eventDiv.textContent = message;
+    // eventDiv.style.display = "block";
+
+    // lastMessage = message;
+
+    // setTimeout(() => {
+    //   eventDiv.style.display = "none";
+    // }, 10000);
   }
   
-  reactionDiv.textContent = message;
 }
 
 function globalSetupOperations() {

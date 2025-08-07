@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
       miceGrowth = 50;
       eagleGrowth = 50;
 
-      textDiv.textContent = "A heat wave strikes; grain has a harder time growing.";
+      updateText("A heat wave strikes; grain has a harder time growing.");
     };
   }
 
@@ -57,7 +57,7 @@ window.addEventListener('load', () => {
       miceGrowth = 70;
       eagleGrowth = 50;
 
-      textDiv.textContent = "A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.";
+      updateText("A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.");
     }
   }
 
@@ -71,7 +71,21 @@ window.addEventListener('load', () => {
       miceGrowth = 50;
       eagleGrowth = 20;
 
-      textDiv.textContent = "A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.";    
+      updateText("A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.");
     }
   }
 }); 
+
+function updateText(newEventText, color = "white") {
+  const textDiv = document.getElementById('event-text');
+
+  textDiv.style.color = color;
+  textDiv.textContent = newEventText;
+  textDiv.style.display = "block";
+
+  setTimeout(() => {
+    // stop displaying the event text after 10 seconds
+    textDiv.style.display = "none";
+  }, 10000);
+
+}
