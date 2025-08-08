@@ -143,7 +143,7 @@ let barWidth = graphWidth / graphMaxPoints;                         // Define wi
 
 //------------------------------- Message Variables ---------------------------------------//
 
-const rtAllDead = "Everything extinct!";
+const rtAllDead = "Everything extinct! Press Reset to try a new scenario.";
 const rtGrainDead = "Grain extinct! No food for the mice!";
 const rtMiceDead = "Mice extinct! No food for the eagles!";
 const rtEaglesDead = "Eagles extinct! With no one to eat the mice, will grain survive?";

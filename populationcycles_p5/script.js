@@ -1,3 +1,5 @@
+let lastTimeout = null;
+
 // Wait for both DOM and p5.js to be ready
 window.addEventListener('load', () => {
   // Initialize controls when the document is ready
@@ -77,15 +79,22 @@ window.addEventListener('load', () => {
 }); 
 
 function updateText(newEventText, color = "white") {
+  clearTimeout(lastTimeout);
   const textDiv = document.getElementById('event-text');
 
   textDiv.style.color = color;
   textDiv.textContent = newEventText;
   textDiv.style.display = "block";
 
-  setTimeout(() => {
+  lastTimeout = setTimeout(() => {
     // stop displaying the event text after 10 seconds
     textDiv.style.display = "none";
   }, 10000);
 
+}
+
+function clearTextEvent() {
+  const textDiv = document.getElementById('event-text');
+  textDiv.style.display = "none";
+  textDiv.style.color = "white";
 }
