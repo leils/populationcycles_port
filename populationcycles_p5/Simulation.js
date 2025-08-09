@@ -53,6 +53,16 @@ function runRecovery () {
       let increment = grainSpan > midSpan ? -1 : 1; 
       grainSpan += increment;
     }
+    
+    if (miceSpan != midSpan) {
+      let increment = miceSpan > midSpan ? -1 : 1; 
+      miceSpan += increment;
+    }
+
+    if (eagleSpan!= midSpan) {
+      let increment = eagleSpan > midSpan ? -1 : 1; 
+      eagleSpan += increment;
+    }
   }
 
   if (generationCount % growthRecoveryRate == 0) {
@@ -61,7 +71,15 @@ function runRecovery () {
       grainGrowth += increment;
     }
 
-    console.log(grainGrowth);
+    if (miceGrowth != midGrowth) {
+      let increment = miceGrowth > midGrowth? -1 : 1; 
+      miceGrowth += increment;
+    }
+
+    if (eagleGrowth != midGrowth) {
+      let increment = eagleGrowth  > midGrowth? -1 : 1; 
+      eagleGrowth  += increment;
+    }
   }
 }
 

@@ -173,6 +173,7 @@ function fullReset() {
   graphCells();
 
   generationCount = 0;
+  play = true;
 }
 
 function setPalette(paletteNum) {

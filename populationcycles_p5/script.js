@@ -38,12 +38,17 @@ window.addEventListener('load', () => {
     heatWaveBtn.onclick = () => {
       markHeatWave();
       // Apply Weak Grain preset
-      grainSpan = 2; //reduce grain lifespan
-      miceSpan = 5;
-      eagleSpan = 5;
-      grainGrowth = 20; // reduce grain growth chance
-      miceGrowth = 50;
-      eagleGrowth = 50;
+      if (recoveryOn) {
+        grainSpan -= 2;
+        grainGrowth -= 20;
+      } else {
+        grainSpan = 2; //reduce grain lifespan
+        miceSpan = 5;
+        eagleSpan = 5;
+        grainGrowth = 20; // reduce grain growth chance
+        miceGrowth = 50;
+        eagleGrowth = 50;
+      }
 
       updateText("A heat wave strikes; grain has a harder time growing.");
     };
@@ -52,12 +57,19 @@ window.addEventListener('load', () => {
   if (invasiveMiceBtn) {
     invasiveMiceBtn.onclick = () => {
       markHeatWave();
-      grainSpan = 5; //reduce grain lifespan
-      miceSpan = 7;
-      eagleSpan = 5;
-      grainGrowth = 50; // reduce grain growth chance
-      miceGrowth = 70;
-      eagleGrowth = 50;
+
+      if (recoveryOn) {
+        miceSpan += 2;
+        miceGrowth += 20;
+      } else {
+        grainSpan = 5; //reduce grain lifespan
+        miceSpan = 7;
+        eagleSpan = 5;
+        grainGrowth = 50; // reduce grain growth chance
+        miceGrowth = 70;
+        eagleGrowth = 50; 
+      }
+
 
       updateText("A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.");
     }
@@ -66,12 +78,18 @@ window.addEventListener('load', () => {
   if (eagleDiseaseBtn) {
     eagleDiseaseBtn.onclick = () => {
       markHeatWave();
-      grainSpan = 5; //reduce grain lifespan
-      miceSpan = 5;
-      eagleSpan = 2;
-      grainGrowth = 50; // reduce grain growth chance
-      miceGrowth = 50;
-      eagleGrowth = 20;
+
+      if (recoveryOn) {
+        eagleSpan -= 2;
+        eagleGrowth -= 20;
+      } else {
+        grainSpan = 5; //reduce grain lifespan
+        miceSpan = 5;
+        eagleSpan = 2;
+        grainGrowth = 50; // reduce grain growth chance
+        miceGrowth = 50;
+        eagleGrowth = 20;
+      }
 
       updateText("A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.");
     }

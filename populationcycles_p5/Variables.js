@@ -32,9 +32,9 @@ const maxSpeed = 10;
 
 // ----------------------------- Variables for input testing -----------------------------------//
 
-let recoveryOn = false;
-let spanRecoveryRate = 50; // Recover increments every X generations
-let growthRecoveryRate = 1; // Recover increments every X generations
+let recoveryOn = true;
+let spanRecoveryRate = 10; // Recover increments every X generations
+let growthRecoveryRate = 10; // Recover increments every X generations
 
 const lowSpan = 2;
 const midSpan = 5;
