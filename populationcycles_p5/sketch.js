@@ -100,7 +100,6 @@ function updateReactionText() {
   // TODO: this is a quick hack to make sure we're not running this change every frame. 
   // Should try and make this more efficient
   if (lastMessage != message) {
-    console.log('using message to update');
     updateText(message, "red");
     lastMessage = message;
 

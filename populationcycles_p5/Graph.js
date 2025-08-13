@@ -1,3 +1,7 @@
+function graphMask() {
+  rect(0, graphY, graphWidth, fullHeight - graphY - (fullHeight - txtY));
+}
+
 function graphCells() {
   // Define bars: species percentage of total cells 
   grainBar = 1 - norm(graincount, 0, maxcells);
@@ -24,15 +28,17 @@ function graphCells() {
     // Remove markers that have moved off the graph
     // Each position represents graphDensity pixels, so we remove markers
     // when they've moved graphWidth/graphDensity positions (same as grainLine.length)
-    if (heatWaveMarkers[i] * graphDensity >= graphWidth) {
-      heatWaveMarkers.splice(i, 1);
-      i--;
-    }
+    // if (heatWaveMarkers[i] * graphDensity >= graphWidth) {
+    //   heatWaveMarkers.splice(i, 1);
+    //   i--;
+    // }
   }
 }
 
 function displayGraph() {
   // Draw graph background
+  push();
+  clip(graphMask);
   fill(0);
   noStroke();
   rect(0, graphY, graphWidth, fullHeight - graphY - (fullHeight - txtY));
@@ -51,6 +57,7 @@ function displayGraph() {
   
   // Draw population bars
   drawPopulationBars();
+  pop();
 }
 
 function drawGraphLines() {
@@ -138,11 +145,16 @@ function drawPopulationBars() {
 
 function drawHeatWaveMarkers() {
   stroke(255, 0, 0, 100);  // Semi-transparent red
+  fill(255, 0, 0, 100);
   strokeWeight(4);
   
   for (let i = 0; i < heatWaveMarkers.length; i++) {
     let x = graphWidth - heatWaveMarkers[i] * graphDensity;
-    line(x, graphY, x, graphY + graphHeight);
+    let barWidth = (((growthDamage / growthRecovery) * growthRecovery) * graphDensity);
+    console.log('width: ', barWidth);
+    // line(x, graphY, x, graphY + graphHeight);
+    rect(x, graphY, barWidth, graphY + graphHeight);
+
   }
 }
 

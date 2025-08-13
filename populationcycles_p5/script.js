@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
   if (resetBtn) {
     resetBtn.onclick = () => {
       fullReset();
-      textDiv.textContent = "Fresh start!";
+      updateText("Fresh start!");
     };
   }
 
@@ -36,65 +36,76 @@ window.addEventListener('load', () => {
 
   if (heatWaveBtn) {
     heatWaveBtn.onclick = () => {
-      markHeatWave();
-      // Apply Weak Grain preset
-      if (recoveryOn) {
-        grainSpan -= 2;
-        grainGrowth -= 20;
-      } else {
-        grainSpan = 2; //reduce grain lifespan
-        miceSpan = 5;
-        eagleSpan = 5;
-        grainGrowth = 20; // reduce grain growth chance
-        miceGrowth = 50;
-        eagleGrowth = 50;
-      }
+      if (graincount > 0) {
+        markHeatWave();
+        // Apply Weak Grain preset
+        if (recoveryOn) {
+          grainSpan -= spanDamage;
+          grainGrowth -= growthDamage;
+        } else {
+          grainSpan = 2; //reduce grain lifespan
+          miceSpan = 5;
+          eagleSpan = 5;
+          grainGrowth = 20; // reduce grain growth chance
+          miceGrowth = 50;
+          eagleGrowth = 50;
+        }
 
-      updateText("A heat wave strikes; grain has a harder time growing.");
+        updateText("A heat wave strikes; grain has a harder time growing.");
+      } else {
+        updateText("No grain");
+      }
     };
   }
 
   if (invasiveMiceBtn) {
     invasiveMiceBtn.onclick = () => {
-      markHeatWave();
+      if (micecount > 0) {
 
-      if (recoveryOn) {
-        miceSpan += 2;
-        miceGrowth += 20;
+        markHeatWave();
+        if (recoveryOn) {
+          miceSpan += spanDamage;
+          miceGrowth += growthDamage;
+        } else {
+          grainSpan = 5; //reduce grain lifespan
+          miceSpan = 7;
+          eagleSpan = 5;
+          grainGrowth = 50; // reduce grain growth chance
+          miceGrowth = 70;
+          eagleGrowth = 50;
+        }
+        updateText("A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.");
+
       } else {
-        grainSpan = 5; //reduce grain lifespan
-        miceSpan = 7;
-        eagleSpan = 5;
-        grainGrowth = 50; // reduce grain growth chance
-        miceGrowth = 70;
-        eagleGrowth = 50; 
+        updateText("No mice");
       }
-
-
-      updateText("A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.");
     }
   }
 
   if (eagleDiseaseBtn) {
     eagleDiseaseBtn.onclick = () => {
-      markHeatWave();
+      if (eaglescount > 0) {
+        markHeatWave();
 
-      if (recoveryOn) {
-        eagleSpan -= 2;
-        eagleGrowth -= 20;
+        if (recoveryOn) {
+          eagleSpan -= spanDamage;
+          eagleGrowth -= growthDamage;
+        } else {
+          grainSpan = 5; //reduce grain lifespan
+          miceSpan = 5;
+          eagleSpan = 2;
+          grainGrowth = 50; // reduce grain growth chance
+          miceGrowth = 50;
+          eagleGrowth = 20;
+        }
+
+        updateText("A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.");
       } else {
-        grainSpan = 5; //reduce grain lifespan
-        miceSpan = 5;
-        eagleSpan = 2;
-        grainGrowth = 50; // reduce grain growth chance
-        miceGrowth = 50;
-        eagleGrowth = 20;
+        updateText("No eagles");
       }
-
-      updateText("A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.");
     }
   }
-}); 
+});
 
 function updateText(newEventText, color = "white") {
   clearTimeout(lastTimeout);

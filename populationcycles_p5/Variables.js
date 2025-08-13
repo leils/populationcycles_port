@@ -35,6 +35,10 @@ const maxSpeed = 10;
 let recoveryOn = true;
 let spanRecoveryRate = 10; // Recover increments every X generations
 let growthRecoveryRate = 10; // Recover increments every X generations
+let spanRecovery = 1;
+let growthRecovery = 5;
+let spanDamage = 2;
+let growthDamage = 20;
 
 const lowSpan = 2;
 const midSpan = 5;
