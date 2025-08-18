@@ -81,6 +81,18 @@ function runRecovery () {
       eagleGrowth  += increment;
     }
   }
+
+  updateSpeciesFitnessSliders();
+}
+
+function updateSpeciesFitnessSliders() {
+  const miceSlider = document.getElementById('mice-slider');
+  const grainSlider = document.getElementById('grain-slider');
+  const eagleSlider = document.getElementById('eagle-slider');
+
+  grainSlider.value = grainSpan;
+  miceSlider.value = miceSpan;
+  eagleSlider.value = eagleSpan;
 }
 
 

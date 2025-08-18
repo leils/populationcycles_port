@@ -25,19 +25,25 @@
   <div class="text" id="event-text"></div>
   <div id="generation-text"></div>
   <div class="ui-container">
-    <div id="controls">
+    <div class="ui-section" id="controls">
       <button id="reset-btn">Reset</button>
       <button id="play-btn">Play</button>
-      <label>Speed: <input id="speed-slider" type="range" min="2" max="10" value="6"></label>
+      <!-- TODO: speed slider hard to touch on touchscreen, make taller -->
+      <label>Speed: <input id="speed-slider" type="range" min="2" max="19" value="6"></label>
       <button id="heat-wave-btn">Heat Wave</button>
       <button id="invasive-mice-btn">Invasive Mice</button>
       <button id="eagle-disease-btn">Eagle Disease</button>
     </div>
+    <div class="ui-section" id="species-bars">
+      <label>Grain Growth Rate<input id="grain-slider" type="range" min="0" max="10" value="5" class="species-slider"></label>
+      <label>Mice Growth Rate<input id="mice-slider" type="range" min="0" max="10" value="5" class="species-slider"></label>
+      <label>Eagles Growth Rate<input id="eagle-slider" type="range" min="0" max="10" value="5" class="species-slider"></label>
+    </div>
     <div class="text">
-      <p>This is a simple model of how 3 species interact in an environment. The chart to the left shows how the populations change over time. </p>
+      <p>This is a simple model of an environment with 3 species. The chart to the left shows how the populations change over time. </p>
       <ul>
         <li>Start an environmental event with one of the buttons. What happens?</li>
-        <li>Try adding more events, with different timing. What can the ecosystem recover from? When does it fail to recover?</li>
+        <li>Add more events, with different timing. What can the ecosystem recover from? When does it fail to recover?</li>
       </ul>
 
     </div>

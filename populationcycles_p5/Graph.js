@@ -48,12 +48,13 @@ function displayGraph() {
   strokeWeight(1);
   noFill();
   rect(0, graphY, graphWidth, graphHeight);
+
+  // Draw heat wave markers
+  drawHeatWaveMarkers();
   
   // Draw graph lines
   drawGraphLines();
   
-  // Draw heat wave markers
-  drawHeatWaveMarkers();
   
   // Draw population bars
   drawPopulationBars();
@@ -144,18 +145,20 @@ function drawPopulationBars() {
 } 
 
 function drawHeatWaveMarkers() {
-  stroke(255, 0, 0, 100);  // Semi-transparent red
-  fill(255, 0, 0, 100);
+  push();
+  // stroke(255, 0, 0, 100);  // Semi-transparent red
+  noStroke();
+  fill(255, 0, 0, 80);
   strokeWeight(4);
   
   for (let i = 0; i < heatWaveMarkers.length; i++) {
     let x = graphWidth - heatWaveMarkers[i] * graphDensity;
     let barWidth = (((growthDamage / growthRecovery) * growthRecovery) * graphDensity);
-    console.log('width: ', barWidth);
     // line(x, graphY, x, graphY + graphHeight);
     rect(x, graphY, barWidth, graphY + graphHeight);
 
   }
+  pop();
 }
 
 // Call this when a heat wave occurs

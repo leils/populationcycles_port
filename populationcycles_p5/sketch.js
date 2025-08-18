@@ -51,7 +51,8 @@ function windowResized() {
 function draw() {
   // TODO: re-write speed and updateRate to be easier to read
   // We run the simulation every 'speed' frames
-  let updateRate = 11-speed;
+  let updateRate = 20-speed;
+  // let updateRate = 20;
   if (play && frameCount % updateRate == 0) {        // Draw simulation and graph if unpaused, update only every frame divisible by speed variable
     runSimulation();
     graphCells();

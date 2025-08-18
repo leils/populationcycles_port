@@ -28,7 +28,7 @@ let s = Math.floor(simWidth / zoom);                    // size of each cell
 let play = true;
 let speed = 6;                                         // speed of simulation
 const minSpeed = 2;
-const maxSpeed = 10;
+const maxSpeed = 19;
 
 // ----------------------------- Variables for input testing -----------------------------------//
 
