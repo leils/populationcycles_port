@@ -2,9 +2,10 @@
 
 ## TODOS: 
 
+- [ ] Consider swapping positions/size of the graph and cellular automata
 - [ ] Re-implement informational tabs 
 - [ ] Fix whatever the heck is going on with the graph shifting 
-- [ ] Twiddle with values to represent "ecological disasters" like heat waves, floods, disease? 
+- [x] Twiddle with values to represent "ecological disasters" like heat waves, floods, disease? 
 
 ## Mostly generated documentation
 
