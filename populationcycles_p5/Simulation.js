@@ -88,20 +88,29 @@ function runRecovery() {
     eagleSpan = midSpan;
     eagleGrowth = midGrowth;
   }
-
-  // updateSpeciesFitnessSliders();
 }
 
-// function updateSpeciesFitnessSliders() {
-//   const miceSlider = document.getElementById('mice-slider');
-//   const grainSlider = document.getElementById('grain-slider');
-//   const eagleSlider = document.getElementById('eagle-slider');
+function heatWave() {
+  if (graincount > 0) {
+    markHeatWave();
+    // Apply Weak Grain preset
+      grainSpan -= spanDamage;
+      grainGrowth -= growthDamage;
+      lastHeatWave = generationCount;
 
-//   grainSlider.value = grainSpan;
-//   miceSlider.value = miceSpan;
-//   eagleSlider.value = eagleSpan;
-// }
+    updateText("A heat wave strikes; grain has a harder time growing.");
+  } else {
+    updateText("No grain");
+  }
+}
 
+function handleEventCadence() {
+  if (generationCount - lastHeatWave >= heatWaveGap) {
+    heatWave();
+    lastHeatWave = generationCount;
+  }
+
+}
 
 function runSimulation() {
   graincount = 0;                                                        // keeping track of cell counts
