@@ -75,7 +75,7 @@ function draw() {
 
 function updateGenerationText() {
   const generationDiv = document.getElementById('generation-text');
-  generationDiv.textContent = "Generations: " + generationCount;
+  generationDiv.textContent = "Time Unit: " + generationCount;
 }
 
 // TODO: consolidate with the function in script.js
