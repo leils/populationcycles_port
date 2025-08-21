@@ -30,6 +30,10 @@ let speed = 6;                                         // speed of simulation
 const minSpeed = 2;
 const maxSpeed = 19;
 
+// ----------------------------- event cadence -----------------------------------//
+let heatWaveGap = 50; // run the heat wave every 50 cycles
+let lastHeatWave = 0;
+
 // ----------------------------- Variables for input testing -----------------------------------//
 
 let recoveryOn = true;

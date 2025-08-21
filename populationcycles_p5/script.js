@@ -6,6 +6,7 @@ window.addEventListener('load', () => {
   const resetBtn = document.getElementById('reset-btn');
   const playBtn = document.getElementById('play-btn');
   const speedSlider = document.getElementById('speed-slider');
+  const heatWaveSlider = document.getElementById('heat-wave-slider');
   const heatWaveBtn = document.getElementById('heat-wave-btn');
   const invasiveMiceBtn = document.getElementById('invasive-mice-btn');
   const eagleDiseaseBtn = document.getElementById('eagle-disease-btn');
@@ -34,27 +35,16 @@ window.addEventListener('load', () => {
     speedSlider.value = speed;
   }
 
+  if (heatWaveSlider) {
+    heatWaveSlider.oninput = (e) => {
+      heatWaveGap = parseInt(e.target.value, 10);
+    };
+    heatWaveSlider.value = heatWaveGap;
+  }
+
   if (heatWaveBtn) {
     heatWaveBtn.onclick = () => {
-      if (graincount > 0) {
-        markHeatWave();
-        // Apply Weak Grain preset
-        if (recoveryOn) {
-          grainSpan -= spanDamage;
-          grainGrowth -= growthDamage;
-        } else {
-          grainSpan = 2; //reduce grain lifespan
-          miceSpan = 5;
-          eagleSpan = 5;
-          grainGrowth = 20; // reduce grain growth chance
-          miceGrowth = 50;
-          eagleGrowth = 50;
-        }
-
-        updateText("A heat wave strikes; grain has a harder time growing.");
-      } else {
-        updateText("No grain");
-      }
+      heatWave();
     };
   }
 

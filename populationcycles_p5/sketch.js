@@ -75,7 +75,7 @@ function draw() {
 
 function updateGenerationText() {
   const generationDiv = document.getElementById('generation-text');
-  generationDiv.textContent = "Time Unit: " + generationCount;
+  generationDiv.textContent = "Simulation Cycle: " + generationCount;
 }
 
 // TODO: consolidate with the function in script.js
@@ -167,12 +167,13 @@ function fullReset() {
   miceLine.fill(graphY + graphHeight - 2);
   eaglesLine.fill(graphY + graphHeight - 2);
   heatWaveMarkers = [];
+  lastHeatWave = 0;
+  generationCount = 0;
 
   seedSimulation();
   runSimulation();
   graphCells();
 
-  generationCount = 0;
   play = true;
 }
 
