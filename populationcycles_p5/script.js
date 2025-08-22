@@ -10,6 +10,7 @@ window.addEventListener('load', () => {
   const heatWaveBtn = document.getElementById('heat-wave-btn');
   const invasiveMiceBtn = document.getElementById('invasive-mice-btn');
   const eagleDiseaseBtn = document.getElementById('eagle-disease-btn');
+  const regularHeat = document.getElementById('reg-heat');
 
   const textDiv = document.getElementById('event-text');
 
@@ -17,6 +18,13 @@ window.addEventListener('load', () => {
     resetBtn.onclick = () => {
       fullReset();
       updateText("Fresh start!");
+    };
+  }
+
+  if (regularHeat) {
+    regularHeat.onclick = () => {
+      regularHeatwaves = !regularHeatwaves;
+      console.log(regularHeatwaves);
     };
   }
 

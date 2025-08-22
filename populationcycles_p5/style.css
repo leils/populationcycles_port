@@ -31,6 +31,7 @@ canvas {
   flex-direction: column;
   gap: 10px;
   z-index: 10;
+  background-color: white;
 }
 
 #key {
@@ -91,7 +92,7 @@ canvas {
 }
 
 .ui-section {
-  background: rgba(30, 30, 30, 0.8);
+  /* background: rgba(30, 30, 30, 0.8); */
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -100,7 +101,7 @@ canvas {
 }
 
 .ui-section label {
-  color: #fff;
+  /* color: #fff; */
 }
 
 #controls button {

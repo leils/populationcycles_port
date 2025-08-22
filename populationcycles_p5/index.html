@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
   <script src="Variables.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div id="key">
     <img src="./images/grain.png">
@@ -31,27 +33,34 @@
       <!-- TODO: speed slider hard to touch on touchscreen, make taller -->
       <label>Speed: <input id="speed-slider" type="range" min="2" max="19" value="6"></label>
       <button id="heat-wave-btn">Heat Wave</button>
-      <button id="invasive-mice-btn">Invasive Mice</button>
-      <button id="eagle-disease-btn">Eagle Disease</button>
+      <!-- <button id="invasive-mice-btn">Invasive Mice</button>
+      <button id="eagle-disease-btn">Eagle Disease</button> -->
     </div>
     <div class="ui-section" id="cadence">
-      <label>Time Between Heat Waves: <input id="heat-wave-slider" type="range" min="2" max="50" value="50"></label>
+      <div>
+        <label for="reg-heat">Regular Heat Waves</label>
+        <input type="checkbox" id="reg-heat" name="reg-heat"/>
+      </div>
+      <label>Time Between Heat Waves: <input id="heat-wave-slider" type="range" min="30" max="80" value="80"></label>
       <!-- <label>Time Between Disease Outbreak: <input id="heat-wave-slider" type="range" min="2" max="50" value="50"></label> -->
     </div>
     <!-- <div class="ui-section" id="species-bars"> -->
-      <!-- <label>Grain Growth Rate<input id="grain-slider" type="range" min="0" max="10" value="5" class="species-slider"></label>
+    <!-- <label>Grain Growth Rate<input id="grain-slider" type="range" min="0" max="10" value="5" class="species-slider"></label>
       <label>Mice Growth Rate<input id="mice-slider" type="range" min="0" max="10" value="5" class="species-slider"></label>
       <label>Eagles Growth Rate<input id="eagle-slider" type="range" min="0" max="10" value="5" class="species-slider"></label> -->
     <!-- </div> -->
     <div class="text">
-      <p>This is a simple model of an environment with 3 species. The chart to the left shows how the populations change over time. </p>
+      <p>This is a simple model of an environment with 3 species. The chart to the left shows how the populations change
+        over time. </p>
       <ul>
-        <li>Start an environmental event with one of the buttons. What happens?</li>
-        <li>Add more events, with different timing. What can the ecosystem recover from? When does it fail to recover?</li>
+        <li>Start heat wave with one of the buttons. What happens?</li>
+        <li>What happens if we have regular heat waves? What can the ecosystem recover from? When does it fail to recover?
+        </li>
       </ul>
 
     </div>
   </div>
   <!-- P5 will generate a canvas here -->
 </body>
-</html> 
+
+</html>
