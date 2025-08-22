@@ -26,26 +26,26 @@ body {
   position: relative;
   grid-column: 1 / 3;
   grid-row: 1 / 3;
+  padding: 16px;
   /* position: absolute;
   top: 2vh;
   left: 2.5vw;
   width: 95vw;
   height: 66vh; */
-  z-index: 1;
   border: 1px solid #333;
 }
 
 /* Position graph canvas */
 #graph-canvas {
   position: relative;
+  padding:16px;
   grid-column: 1 / 2;
-  grid-row: 3 / 4;ß
+  grid-row: 3 / 4;
   /* position: absolute;
   top: 70vh;
   left: 25vw;
   width: 50vw;
   height: 28vh; */
-  z-index: 1;
   border: 1px solid #333;
 }
 
@@ -81,6 +81,7 @@ body {
   align-self: end;
   justify-self: center;
   border: 16px solid white;
+  z-index: 100;
 }
 
 #key img {
