@@ -1,12 +1,18 @@
 function graphMask() {
-  rect(0, graphY, graphWidth, fullHeight - graphY - (fullHeight - txtY));
+  if (graphP5) {
+    return () => graphP5.rect(0, 0, graphWidth, graphHeight);
+  }
+  return () => {};
 }
 
 function graphCells() {
+  if (!graphP5) {
+    throw new Error("Graph not initialized properly");
+  }
   // Define bars: species percentage of total cells 
-  grainBar = 1 - norm(graincount, 0, maxcells);
-  miceBar = 1 - norm(micecount, 0, maxcells);
-  eaglesBar = 1 - norm(eaglescount, 0, maxcells);
+  grainBar = 1 - (graphP5.norm(graincount, 0, maxcells));
+  miceBar = 1 - (graphP5.norm(micecount, 0, maxcells));
+  eaglesBar = 1 - (graphP5.norm(eaglescount, 0, maxcells));
   
   // Slide everything down in the arrays
   for (let i = grainLine.length - 1; i > 0; i--) {
@@ -36,18 +42,20 @@ function graphCells() {
 }
 
 function displayGraph() {
+  if (!graphP5) return;
+  
   // Draw graph background
-  push();
-  clip(graphMask);
-  fill(0);
-  noStroke();
-  rect(0, graphY, graphWidth, fullHeight - graphY - (fullHeight - txtY));
+  graphP5.push();
+  graphP5.clip(() => graphMask());
+  graphP5.fill(0);
+  graphP5.noStroke();
+  graphP5.rect(0, 0, graphWidth, graphHeight);
   
   // Draw graph border
-  stroke(50);
-  strokeWeight(1);
-  noFill();
-  rect(0, graphY, graphWidth, graphHeight);
+  graphP5.stroke(50);
+  graphP5.strokeWeight(1);
+  graphP5.noFill();
+  graphP5.rect(0, 0, graphWidth, graphHeight);
 
   // Draw heat wave markers
   drawHeatWaveMarkers();
@@ -58,107 +66,113 @@ function displayGraph() {
   
   // Draw population bars
   drawPopulationBars();
-  pop();
+  graphP5.pop();
 }
 
 function drawGraphLines() {
+  if (!graphP5) return;
+  
   // Draw the grid lines
-  stroke(30);
-  strokeWeight(1);
+  graphP5.stroke(30);
+  graphP5.strokeWeight(1);
   
   // Horizontal grid lines
   for (let i = 1; i < 4; i++) {
-    const yPos = graphY + i * (graphHeight / 4);
-    line(0, yPos, graphWidth, yPos);
+    const yPos = i * (graphHeight / 4);
+    graphP5.line(0, yPos, graphWidth, yPos);
   }
   
   // Draw the graph lines using beginShape
-  noFill();
+  graphP5.noFill();
 
-  push();
+  graphP5.push();
   // TODO: fix this weird hack to get the lines to span the width of the graph
-  translate(-2*barWidth,0);  // ensure our lines meet the bars at the right edge of the graph
+  graphP5.translate(-2*barWidth,0);  // ensure our lines meet the bars at the right edge of the graph
   
   // Draw eagle line
-  stroke(eaglesc);
-  strokeWeight(2);
-  beginShape();
+  graphP5.stroke(eaglesc);
+  graphP5.strokeWeight(2);
+  graphP5.beginShape();
   for (let i = 0; i < eaglesLine.length; i++) {
     if (eaglesLine[i] < 1) { // Only draw points if they're valid, as a % of 100
-      vertex(graphWidth - (i * graphDensity) , graphY + (graphHeight * eaglesLine[i]));
+      graphP5.vertex(graphWidth - (i * graphDensity) , (graphHeight * eaglesLine[i]));
     }
   }
-  endShape();
+  graphP5.endShape();
   
   // Draw mice line
-  stroke(micec);
-  strokeWeight(2);
-  beginShape();
+  graphP5.stroke(micec);
+  graphP5.strokeWeight(2);
+  graphP5.beginShape();
   for (let i = 0; i < miceLine.length; i++) {
     if (miceLine[i] < 1) { // Only draw points if they're valid
-      vertex(graphWidth - (i * graphDensity) , graphY + (graphHeight * miceLine[i]));
+      graphP5.vertex(graphWidth - (i * graphDensity) , (graphHeight * miceLine[i]));
     }
   }
-  endShape();
+  graphP5.endShape();
   
   // Draw grain line
-  stroke(grainc);
-  strokeWeight(2);
-  beginShape();
+  graphP5.stroke(grainc);
+  graphP5.strokeWeight(2);
+  graphP5.beginShape();
   for (let i = 0; i < grainLine.length; i++) {
     if (grainLine[i] < 1) { // Only draw points if they're valid
-      vertex(graphWidth - (i * graphDensity) , graphY + (graphHeight * grainLine[i]));
+      graphP5.vertex(graphWidth - (i * graphDensity) , (graphHeight * grainLine[i]));
     }
   }
-  endShape();
+  graphP5.endShape();
 
-  pop();
+  graphP5.pop();
 }
 
 function drawPopulationBars() {
+  if (!graphP5) return;
+  
   // Draw the bar chart area
   const barChartWidth = barWidth * 3;
-  fill(20);
-  stroke(40);
-  rect(graphWidth - barChartWidth, graphY, barChartWidth, graphHeight);
+  graphP5.fill(20);
+  graphP5.stroke(40);
+  graphP5.rect(graphWidth - barChartWidth, 0, barChartWidth, graphHeight);
   
   // Draw the bars
-  noStroke();
+  graphP5.noStroke();
   
   // Eagles bar
   if (eaglescount > 0) {
-    fill(eaglesc);
-    rect(graphWidth - barWidth, graphY + graphHeight, barWidth, -graphHeight * (1 - eaglesBar));
+    graphP5.fill(eaglesc);
+    graphP5.rect(graphWidth - barWidth, graphHeight, barWidth, -graphHeight * (1 - eaglesBar));
   }
   
   // Mice bar
   if (micecount > 0) {
-    fill(micec);
-    rect(graphWidth - 2 * barWidth, graphY + graphHeight, barWidth, -graphHeight * (1 - miceBar));
+    graphP5.fill(micec);
+    graphP5.rect(graphWidth - 2 * barWidth, graphHeight, barWidth, -graphHeight * (1 - miceBar));
   }
   
   // Grain bar
   if (graincount > 0) {
-    fill(grainc);
-    rect(graphWidth - 3 * barWidth, graphY + graphHeight, barWidth, -graphHeight * (1 - grainBar));
+    graphP5.fill(grainc);
+    graphP5.rect(graphWidth - 3 * barWidth, graphHeight, barWidth, -graphHeight * (1 - grainBar));
   }
 } 
 
 function drawHeatWaveMarkers() {
-  push();
-  // stroke(255, 0, 0, 100);  // Semi-transparent red
-  noStroke();
-  fill(255, 0, 0, 80);
-  strokeWeight(4);
+  if (!graphP5) return;
+  
+  graphP5.push();
+  // graphP5.stroke(255, 0, 0, 100);  // Semi-transparent red
+  graphP5.noStroke();
+  graphP5.fill(255, 0, 0, 80);
+  graphP5.strokeWeight(4);
   
   for (let i = 0; i < heatWaveMarkers.length; i++) {
     let x = graphWidth - heatWaveMarkers[i] * graphDensity;
     let barWidth = (((growthDamage / growthRecovery) * growthRecovery) * graphDensity);
-    // line(x, graphY, x, graphY + graphHeight);
-    rect(x, graphY, barWidth, graphY + graphHeight);
+    // graphP5.line(x, 0, x, graphHeight);
+    graphP5.rect(x, 0, barWidth, graphHeight);
 
   }
-  pop();
+  graphP5.pop();
 }
 
 // Call this when a heat wave occurs

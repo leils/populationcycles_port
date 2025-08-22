@@ -36,11 +36,11 @@ function run(id) {
     if (cells[id][2] === wallsc) {                                    // if current cell is a wall
     
       if (cells[cellNeighbors[i]][1] === 0) {                         // and neighbor is wall
-        if (random(1000) < wallDecayRate * 5) {                       // set chance to decay very low
+        if (simP5 && simP5.random(1000) < wallDecayRate * 5) {                       // set chance to decay very low
           cells[id][1] = 0;                                           // if succeeds, decay
         }
       } else if (cells[cellNeighbors[i]][2] !== wallsc) {             // but if neighbor is not a wall
-        if (random(1000) < wallDecayRate / 2) {                       // set chance to decay high
+        if (simP5 && simP5.random(1000) < wallDecayRate / 2) {                       // set chance to decay high
           cells[id][1] = 0;                                           // if succeeds, decay
         }
       }
@@ -50,7 +50,7 @@ function run(id) {
       */
       
     } else if (canEat(cells[id][2], cells[cellNeighbors[i]][2], cells[cellNeighbors[i]][1])) {    // if current cell can eat the neighbor cell
-      if (random(200) < cells[id][3]) {                                                           // check against current cell fitness
+      if (simP5 && simP5.random(200) < cells[id][3]) {                                                           // check against current cell fitness
         setType(cells[cellNeighbors[i]][0], cells[id][2]);                                        // if check succeeds, spread current cell
       }
     }
@@ -128,13 +128,15 @@ function setType(id, newType) {                                       // if neig
 
 function render(id) {                                                 // draw the actual dots to represent lifeforms in each cell
   if (!dead(cells[id][0])) {                                          // if it's not dead
-    sim.fill(cells[id][2]);                                           // make it the correct color
-    sim.stroke(cells[id][2]);
-    
-    // Draw the cells as circles
-    sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
-                0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
-                s, s);
+    if (simP5 && sim) {
+      sim.fill(cells[id][2]);                                           // make it the correct color
+      sim.stroke(cells[id][2]);
+      
+      // Draw the cells as circles
+      sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
+                  0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
+                  s, s);
+    }
   }
 }
 

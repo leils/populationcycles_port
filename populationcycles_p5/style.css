@@ -10,7 +10,8 @@ body {
   font-size:large;
 }
 
-canvas {
+/* Remove the single canvas positioning */
+/* canvas {
   display: block;
   position: fixed;
   top: 0;
@@ -18,6 +19,36 @@ canvas {
   width: 100%;
   height: 100%;
   z-index: -1;
+} */
+
+/* Position simulation canvas */
+#simulation-canvas {
+  position: absolute;
+  top: 2vh;
+  left: 2.5vw;
+  width: 95vw;
+  height: 66vh;
+  z-index: 1;
+  border: 1px solid #333;
+}
+
+/* Position graph canvas */
+#graph-canvas {
+  position: absolute;
+  top: 70vh;
+  left: 25vw;
+  width: 50vw;
+  height: 28vh;
+  z-index: 1;
+  border: 1px solid #333;
+}
+
+/* Ensure p5 canvases within containers are properly sized */
+#simulation-canvas canvas,
+#graph-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 .ui-container {

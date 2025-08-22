@@ -1,6 +1,10 @@
 // TODO: Many of these should really be in a config file, not "variables"
 
-let sim;
+// P5 instances for separate canvases
+let simP5;  // Simulation p5 instance
+let graphP5; // Graph p5 instance
+
+let sim; // Graphics buffer for the simulation
 let renderedSim = [null, null];
 let lastMessage = "";
 

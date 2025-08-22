@@ -1,12 +1,13 @@
-function seedSimulation() {
+function seedSimulation(p) {
   console.log("seeding... Inserting a maximum of " + maxcells + " cells.");
 
   for (let i = 1; i < maxcells + 1; i++) {                                // Add cells to Array
     let st = 0;
     let intel = 0;
-    let c = color(0);                                                     // 25% chance for empty cell
+    let c = p.color(0);                                                     // 25% chance for empty cell
+    //TODO:  aw man ... this color thing really fucks with this order
 
-    let r = random(1);
+    let r = p.random(1);
     if (r < 0.25) { 
       c = eaglesc; 
       st = eagleSpan; 
@@ -42,8 +43,10 @@ function seedSimulation() {
 
 
 function displaySimulation() {                                         // display the buffer image of the simulation
-  image(renderedSim[0], simX, simY, renderedSim[0].width, renderedSim[0].height);
-  image(renderedSim[1], simX + renderedSim[0].width, simY, renderedSim[1].width, renderedSim[1].height);
+  if (simP5 && sim) {
+    simP5.image(renderedSim[0], 0, 0, renderedSim[0].width, renderedSim[0].height);
+    simP5.image(renderedSim[1], renderedSim[0].width, 0, renderedSim[1].width, renderedSim[1].height);
+  }
 }
 
 function runRecovery () {
@@ -96,7 +99,7 @@ function updateSpeciesFitnessSliders() {
 }
 
 
-function runSimulation() {
+function runSimulation(p) {
   graincount = 0;                                                        // keeping track of cell counts
   micecount = 0;
   eaglescount = 0;
@@ -107,7 +110,7 @@ function runSimulation() {
   // Fisher-Yates shuffle
   // http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
   for (let i = indices.length - 1; i > 0; i--) {
-    let j = Math.floor(random(0, i + 1));
+    let j = Math.floor(p.random(0, i + 1)); // TODO: this could probably math random, everything that uses random could be math random to remove p5 dependence
     [indices[i], indices[j]] = [indices[j], indices[i]]; // Swap elements
   }
     
