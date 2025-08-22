@@ -6,13 +6,15 @@ function graphMask() {
 }
 
 function graphCells() {
-  if (!graphP5) {
-    throw new Error("Graph not initialized properly");
-  }
+
   // Define bars: species percentage of total cells 
-  grainBar = 1 - (graphP5.norm(graincount, 0, maxcells));
-  miceBar = 1 - (graphP5.norm(micecount, 0, maxcells));
-  eaglesBar = 1 - (graphP5.norm(eaglescount, 0, maxcells));
+  // grainBar = 1 - (graphP5.norm(graincount, 0, maxcells));
+  // miceBar = 1 - (graphP5.norm(micecount, 0, maxcells));
+  // eaglesBar = 1 - (graphP5.norm(eaglescount, 0, maxcells));
+
+  grainBar = 1 - (graincount / maxcells);
+  miceBar = 1 - (micecount / maxcells);
+  eaglesBar = 1 - (eaglescount / maxcells);
   
   // Slide everything down in the arrays
   for (let i = grainLine.length - 1; i > 0; i--) {
@@ -90,7 +92,8 @@ function drawGraphLines() {
   graphP5.translate(-2*barWidth,0);  // ensure our lines meet the bars at the right edge of the graph
   
   // Draw eagle line
-  graphP5.stroke(eaglesc);
+  const eagleColor = cellColors[CELL_TYPES.EAGLE];
+  graphP5.stroke(eagleColor.r, eagleColor.g, eagleColor.b);
   graphP5.strokeWeight(2);
   graphP5.beginShape();
   for (let i = 0; i < eaglesLine.length; i++) {
@@ -101,7 +104,8 @@ function drawGraphLines() {
   graphP5.endShape();
   
   // Draw mice line
-  graphP5.stroke(micec);
+  const miceColor = cellColors[CELL_TYPES.MICE];
+  graphP5.stroke(miceColor.r, miceColor.g, miceColor.b);
   graphP5.strokeWeight(2);
   graphP5.beginShape();
   for (let i = 0; i < miceLine.length; i++) {
@@ -112,7 +116,8 @@ function drawGraphLines() {
   graphP5.endShape();
   
   // Draw grain line
-  graphP5.stroke(grainc);
+  const grainColor = cellColors[CELL_TYPES.GRAIN];
+  graphP5.stroke(grainColor.r, grainColor.g, grainColor.b);
   graphP5.strokeWeight(2);
   graphP5.beginShape();
   for (let i = 0; i < grainLine.length; i++) {
@@ -139,19 +144,22 @@ function drawPopulationBars() {
   
   // Eagles bar
   if (eaglescount > 0) {
-    graphP5.fill(eaglesc);
+    const eagleColor = cellColors[CELL_TYPES.EAGLE];
+    graphP5.fill(eagleColor.r, eagleColor.g, eagleColor.b);
     graphP5.rect(graphWidth - barWidth, graphHeight, barWidth, -graphHeight * (1 - eaglesBar));
   }
   
   // Mice bar
   if (micecount > 0) {
-    graphP5.fill(micec);
+    const miceColor = cellColors[CELL_TYPES.MICE];
+    graphP5.fill(miceColor.r, miceColor.g, miceColor.b);
     graphP5.rect(graphWidth - 2 * barWidth, graphHeight, barWidth, -graphHeight * (1 - miceBar));
   }
   
   // Grain bar
   if (graincount > 0) {
-    graphP5.fill(grainc);
+    const grainColor = cellColors[CELL_TYPES.GRAIN];
+    graphP5.fill(grainColor.r, grainColor.g, grainColor.b);
     graphP5.rect(graphWidth - 3 * barWidth, graphHeight, barWidth, -graphHeight * (1 - grainBar));
   }
 } 
