@@ -45,10 +45,9 @@ function graphCells() {
 
 function displayGraph() {
   if (!graphP5) return;
-  
   // Draw graph background
   graphP5.push();
-  graphP5.clip(() => graphMask());
+  // graphP5.clip(() => graphMask());
   graphP5.fill(0);
   graphP5.noStroke();
   graphP5.rect(0, 0, graphWidth, graphHeight);

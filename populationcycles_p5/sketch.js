@@ -135,22 +135,6 @@ function initializeP5Instances() {
   graphP5 = graphP5Instance;
 }
 
-// Legacy functions for backward compatibility
-function preload() {
-}
-
-function setup() {
-  initializeP5Instances();
-}
-
-function windowResized() {
-  // This will be handled by individual p5 instances
-}
-
-function draw() {
-  // This will be handled by individual p5 instances
-}
-
 function updateGenerationText() {
   const generationDiv = document.getElementById('generation-text');
   generationDiv.textContent = "Time Unit: " + generationCount;
@@ -181,17 +165,6 @@ function updateReactionText() {
   if (lastMessage != message) {
     updateText(message, "red");
     lastMessage = message;
-
-    // const eventDiv = document.getElementById('event-text');
-    // eventDiv.style.color = "red";
-    // eventDiv.textContent = message;
-    // eventDiv.style.display = "block";
-
-    // lastMessage = message;
-
-    // setTimeout(() => {
-    //   eventDiv.style.display = "none";
-    // }, 10000);
   }
 
 }
