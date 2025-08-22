@@ -7,12 +7,12 @@
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.9/lib/p5.min.js"></script>
   <!-- Main sketch files -->
   <script src="script.js"></script>
+  <script src="Variables.js"></script>
   <script src="sketch.js"></script>
   <script src="Cell_Class.js"></script>
   <script src="Graph.js"></script>
   <script src="Inputs.js"></script>
   <script src="Simulation.js"></script>
-  <script src="Variables.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,6 +24,11 @@
   <div id="reactionEffectOverlay"></div>
   <div class="text" id="event-text"></div>
   <div id="generation-text"></div>
+  
+  <!-- Separate canvas containers -->
+  <div id="simulation-canvas"></div>
+  <div id="graph-canvas"></div>
+  
   <div class="ui-container">
     <div class="ui-section" id="controls">
       <button id="reset-btn">Reset</button>
@@ -48,6 +53,5 @@
 
     </div>
   </div>
-  <!-- P5 will generate a canvas here -->
 </body>
 </html> 

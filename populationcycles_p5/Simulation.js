@@ -4,11 +4,11 @@ function seedSimulation() {
   for (let i = 1; i < maxcells + 1; i++) {                                // Add cells to Array
     let st = 0;
     let intel = 0;
-    let c = color(0);                                                     // 25% chance for empty cell
+    let cellType = CELL_TYPES.EMPTY;                                       // Default to empty cell
 
-    let r = random(1);
+    let r = simP5 ? simP5.random(1) : Math.random();
     if (r < 0.25) { 
-      c = eaglesc; 
+      cellType = CELL_TYPES.EAGLE; 
       st = eagleSpan; 
       intel = eagleGrowth;
       
@@ -16,7 +16,7 @@ function seedSimulation() {
         
     }                                                                       // 25% chance for eagles
     else if (r < 0.50) { 
-      c = micec; 
+      cellType = CELL_TYPES.MICE; 
       st = miceSpan; 
       intel = miceGrowth;
       
@@ -24,7 +24,7 @@ function seedSimulation() {
       
     }                                                                       // 25% chance for mice (50% - the 25% for eagles)
     else if (r < 0.75) { 
-      c = grainc; 
+      cellType = CELL_TYPES.GRAIN; 
       st = grainSpan; 
       intel = grainGrowth;
       
@@ -35,15 +35,17 @@ function seedSimulation() {
 
     cells[i-1][0] = i-1;
     cells[i-1][1] = st;
-    cells[i-1][2] = c;
+    cells[i-1][2] = cellType;  // Store type instead of color
     cells[i-1][3] = intel;                            // adds the new cell
   }
 }
 
 
 function displaySimulation() {                                         // display the buffer image of the simulation
-  image(renderedSim[0], simX, simY, renderedSim[0].width, renderedSim[0].height);
-  image(renderedSim[1], simX + renderedSim[0].width, simY, renderedSim[1].width, renderedSim[1].height);
+  if (simP5 && sim) {
+    simP5.image(renderedSim[0], 0, 0, renderedSim[0].width, renderedSim[0].height);
+    simP5.image(renderedSim[1], renderedSim[0].width, 0, renderedSim[1].width, renderedSim[1].height);
+  }
 }
 
 function runRecovery () {
@@ -107,7 +109,7 @@ function runSimulation() {
   // Fisher-Yates shuffle
   // http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
   for (let i = indices.length - 1; i > 0; i--) {
-    let j = Math.floor(random(0, i + 1));
+    let j = Math.floor((simP5 ? simP5.random(0, i + 1) : Math.random() * (i + 1)));
     [indices[i], indices[j]] = [indices[j], indices[i]]; // Swap elements
   }
     
@@ -118,13 +120,13 @@ function runSimulation() {
 
   for (let i = maxcells-1; i >= 0; i--) {
     if (!dead(cells[indices[i]][0])) {
-      if (cells[indices[i]][2] === grainc) { 
+      if (cells[indices[i]][2] === CELL_TYPES.GRAIN) { 
         graincount++; 
       }
-      else if (cells[indices[i]][2] === micec) { 
+      else if (cells[indices[i]][2] === CELL_TYPES.MICE) { 
         micecount++; 
       }
-      else if (cells[indices[i]][2] === eaglesc) { 
+      else if (cells[indices[i]][2] === CELL_TYPES.EAGLE) { 
         eaglescount++; 
       }             // update cell count                                                  
         

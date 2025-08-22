@@ -33,14 +33,14 @@ function run(id) {
       
   for (let i = 0; i < 8; i++) {                                       // for each neighbor cell
     
-    if (cells[id][2] === wallsc) {                                    // if current cell is a wall
+    if (cells[id][2] === CELL_TYPES.WALL) {                                    // if current cell is a wall
     
       if (cells[cellNeighbors[i]][1] === 0) {                         // and neighbor is wall
-        if (random(1000) < wallDecayRate * 5) {                       // set chance to decay very low
+        if (simP5 && simP5.random(1000) < wallDecayRate * 5) {                       // set chance to decay very low
           cells[id][1] = 0;                                           // if succeeds, decay
         }
-      } else if (cells[cellNeighbors[i]][2] !== wallsc) {             // but if neighbor is not a wall
-        if (random(1000) < wallDecayRate / 2) {                       // set chance to decay high
+      } else if (cells[cellNeighbors[i]][2] !== CELL_TYPES.WALL) {             // but if neighbor is not a wall
+        if (simP5 && simP5.random(1000) < wallDecayRate / 2) {                       // set chance to decay high
           cells[id][1] = 0;                                           // if succeeds, decay
         }
       }
@@ -50,7 +50,7 @@ function run(id) {
       */
       
     } else if (canEat(cells[id][2], cells[cellNeighbors[i]][2], cells[cellNeighbors[i]][1])) {    // if current cell can eat the neighbor cell
-      if (random(200) < cells[id][3]) {                                                           // check against current cell fitness
+      if (simP5 && simP5.random(200) < cells[id][3]) {                                                           // check against current cell fitness
         setType(cells[cellNeighbors[i]][0], cells[id][2]);                                        // if check succeeds, spread current cell
       }
     }
@@ -63,23 +63,23 @@ function run(id) {
 function canEat(cellType, eatType, eatStr) {
   // function to determine whether a neighbor cell can be eaten
 
-  if (cellType === eaglesc) {
+  if (cellType === CELL_TYPES.EAGLE) {
     // if current cell is an eagle
-    if (eatType === micec && eatStr > 0) {                            // if potential meal is both a mouse, and alive
+    if (eatType === CELL_TYPES.MICE && eatStr > 0) {                            // if potential meal is both a mouse, and alive
       return true;                                                    // return a true value (potential meal can be eaten)
     } else {
       return false;                                                   // if meal is anything but an alive mouse
     }                                                                 // return a false value (potential meal cannot be eaten)
     
-  } else if (cellType === micec) {
+  } else if (cellType === CELL_TYPES.MICE) {
     // if current cell is a mouse
-    if (eatType === grainc && eatStr > 0) {                           // if potential meal is both grain, and alive
+    if (eatType === CELL_TYPES.GRAIN && eatStr > 0) {                           // if potential meal is both grain, and alive
       return true;                                                    // return a true value (potential meal can be eaten)
     } else {
       return false;                                                   // if meal is anything but alive grain
     }                                                                 // return a false value (potential meal cannot be eaten)
     
-  } else if (cellType === grainc) {
+  } else if (cellType === CELL_TYPES.GRAIN) {
     // if current cell is grain
     if (eatStr < 1) {                                                 // if there is room to grow (if neighbor cell is empty)
       /* it should be noted that there are no actual empty cells,
@@ -101,23 +101,23 @@ function canEat(cellType, eatType, eatStr) {
 
 function setType(id, newType) {                                       // if neighbor cell can be eaten,
                                                                       // this is the function to convert the consumed neighbor cell
-  if (newType === grainc) {
-    cells[id][2] = grainc;
+  if (newType === CELL_TYPES.GRAIN) {
+    cells[id][2] = CELL_TYPES.GRAIN;
     cells[id][1] = grainSpan;
     cells[id][3] = grainGrowth;
   }
-  else if (newType === micec) {
-    cells[id][2] = micec;
+  else if (newType === CELL_TYPES.MICE) {
+    cells[id][2] = CELL_TYPES.MICE;
     cells[id][1] = miceSpan;
     cells[id][3] = miceGrowth;
   }
-  else if (newType === eaglesc) {
-    cells[id][2] = eaglesc;
+  else if (newType === CELL_TYPES.EAGLE) {
+    cells[id][2] = CELL_TYPES.EAGLE;
     cells[id][1] = eagleSpan;
     cells[id][3] = eagleGrowth;
   }
-  else if (newType === wallsc) {
-    cells[id][2] = newType;
+  else if (newType === CELL_TYPES.WALL) {
+    cells[id][2] = CELL_TYPES.WALL;
     cells[id][1] = wallSpan;
   }
 }
@@ -128,13 +128,20 @@ function setType(id, newType) {                                       // if neig
 
 function render(id) {                                                 // draw the actual dots to represent lifeforms in each cell
   if (!dead(cells[id][0])) {                                          // if it's not dead
-    sim.fill(cells[id][2]);                                           // make it the correct color
-    sim.stroke(cells[id][2]);
-    
-    // Draw the cells as circles
-    sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
-                0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
-                s, s);
+    if (simP5 && sim) {
+      const cellType = cells[id][2];
+      const color = cellColors[cellType];
+      
+      if (color) {
+        sim.fill(color.r, color.g, color.b);                           // make it the correct color
+        sim.stroke(color.r, color.g, color.b);
+        
+        // Draw the cells as circles
+        sim.ellipse(0.8 * s + (cells[id][0] % rowSize) * s, 
+                    0.5 * s + Math.floor(cells[id][0] / rowSize) * s, 
+                    s, s);
+      }
+    }
   }
 }
 
