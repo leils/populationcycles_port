@@ -54,7 +54,8 @@ const maxSpeed = 19;
 
 // ----------------------------- event cadence -----------------------------------//
 let heatWaveGap = 50; // run the heat wave every 50 cycles
-let regularHeatWaves = false;
+// let lastHeatWave = 0;
+let regularHeatwaves = false;
 
 // ----------------------------- Variables for input testing -----------------------------------//
 
