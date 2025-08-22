@@ -1,6 +1,28 @@
 // TODO: Many of these should really be in a config file, not "variables"
 
-let sim;
+// P5 instances for separate canvases
+let simP5;  // Simulation p5 instance
+let graphP5; // Graph p5 instance
+
+// Cell type constants
+const CELL_TYPES = {
+  EMPTY: 0,    // Empty/dead cell
+  GRAIN: 1,    // Grain cell
+  MICE: 2,     // Mice cell
+  EAGLE: 3,    // Eagle cell
+  WALL: 4      // Wall cell
+};
+
+// Color map for cell types (RGB values, not p5 colors)
+let cellColors = {
+  [CELL_TYPES.EMPTY]: { r: 0, g: 0, b: 0 },      // Black
+  [CELL_TYPES.GRAIN]: { r: 102, g: 150, b: 0 },   // Green
+  [CELL_TYPES.MICE]: { r: 0, g: 102, b: 204 },    // Blue
+  [CELL_TYPES.EAGLE]: { r: 204, g: 0, b: 0 },     // Red
+  [CELL_TYPES.WALL]: { r: 100, g: 100, b: 100 }   // Grey
+};
+
+let sim; // Graphics buffer for the simulation
 let renderedSim = [null, null];
 let lastMessage = "";
 
@@ -82,16 +104,9 @@ Strong Eagles: 4 4 7 - 40  40  70
 
 //------------------------------ Color Variables --------------------------------//
 
-let grainc;
-let micec; 
-let eaglesc;
-let wallsc;
-
-let black;
-let darkGrey;
-let medGrey;
-let lightGrey; 
-let lighterGrey;
+// Legacy color variables (kept for backward compatibility)
+let grainc, micec, eaglesc, wallsc;
+let black, darkGrey, medGrey, lightGrey, lighterGrey;
 
 let colorDebug = false;  // when on, press top left to cycle through color palates
 let palateNumber = 7; // number of color palates

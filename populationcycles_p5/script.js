@@ -2,6 +2,11 @@ let lastTimeout = null;
 
 // Wait for both DOM and p5.js to be ready
 window.addEventListener('load', () => {
+  // Initialize p5 instances first
+  if (typeof initializeP5Instances === 'function') {
+    initializeP5Instances();
+  }
+  
   // Initialize controls when the document is ready
   const resetBtn = document.getElementById('reset-btn');
   const playBtn = document.getElementById('play-btn');
