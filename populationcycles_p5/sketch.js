@@ -192,8 +192,8 @@ function globalSetupOperations(p) {
 
   // Set up graph arrays
   // TODO: fix this weird hack to get the lines to span the width of the graph
-  let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
-
+  // let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
+  
   grainLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
   miceLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
   eaglesLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
