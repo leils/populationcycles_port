@@ -66,40 +66,6 @@ function runRecovery() {
     eagleSpan = midSpan;
     eagleGrowth = midGrowth;
   }
-  // Species slowly return to "normal" over time 
-  // if (generationCount % spanRecoveryRate == 0) {
-  //   // if (grainSpan != midSpan) {
-  //   //   let increment = grainSpan > midSpan ? -spanRecovery : spanRecovery; 
-  //   //   grainSpan += increment;
-  //   // }
-
-  //   if (miceSpan != midSpan) {
-  //     let increment = miceSpan > midSpan ? -spanRecovery : spanRecovery;
-  //     miceSpan += increment;
-  //   }
-
-  //   if (eagleSpan != midSpan) {
-  //     let increment = eagleSpan > midSpan ? -spanRecovery : spanRecovery;
-  //     eagleSpan += increment;
-  //   }
-  // }
-
-  // if (generationCount % growthRecoveryRate == 0) {
-  //   // if (grainGrowth!= midGrowth) {
-  //   //   let increment = grainGrowth > midGrowth? -growthRecovery : growthRecovery; 
-  //   //   grainGrowth += increment;
-  //   // }
-
-  //   if (miceGrowth != midGrowth) {
-  //     let increment = miceGrowth > midGrowth ? -growthRecovery : growthRecovery;
-  //     miceGrowth += increment;
-  //   }
-
-  //   if (eagleGrowth != midGrowth) {
-  //     let increment = eagleGrowth > midGrowth ? -growthRecovery : growthRecovery;
-  //     eagleGrowth += increment;
-  //   }
-  // }
 
   updateSpeciesFitnessSliders();
 }

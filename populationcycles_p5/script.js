@@ -46,18 +46,7 @@ window.addEventListener('load', () => {
         grainSpan -= spanDamage;
         grainGrowth -= growthDamage;
         lastHeatWave = generationCount;
-        // Apply Weak Grain preset
-        // if (recoveryOn) {
-        //   grainSpan -= spanDamage;
-        //   grainGrowth -= growthDamage;
-        // } else {
-        //   grainSpan = 2; //reduce grain lifespan
-        //   miceSpan = 5;
-        //   eagleSpan = 5;
-        //   grainGrowth = 20; // reduce grain growth chance
-        //   miceGrowth = 50;
-        //   eagleGrowth = 50;
-        // }
+       
 
         updateText("A heat wave strikes; grain has a harder time growing.");
       } else {
@@ -75,17 +64,7 @@ window.addEventListener('load', () => {
         miceSpan += spanDamage;
         miceGrowth += growthDamage;
         lastInvasiveMice = generationCount;
-        // if (recoveryOn) {
-        //   miceSpan += spanDamage;
-        //   miceGrowth += growthDamage;
-        // } else {
-        //   grainSpan = 5; //reduce grain lifespan
-        //   miceSpan = 7;
-        //   eagleSpan = 5;
-        //   grainGrowth = 50; // reduce grain growth chance
-        //   miceGrowth = 70;
-        //   eagleGrowth = 50;
-        // }
+     
         updateText("A new type of mouse is introduced to the ecosystem. It's stronger and grows faster than before.");
 
       } else {
@@ -102,18 +81,6 @@ window.addEventListener('load', () => {
         eagleSpan-= spanDamage;
         eagleGrowth -= growthDamage;
         lastEagleDisease = generationCount;
-
-        // if (recoveryOn) {
-        //   eagleSpan -= spanDamage;
-        //   eagleGrowth -= growthDamage;
-        // } else {
-        //   grainSpan = 5; //reduce grain lifespan
-        //   miceSpan = 5;
-        //   eagleSpan = 2;
-        //   grainGrowth = 50; // reduce grain growth chance
-        //   miceGrowth = 50;
-        //   eagleGrowth = 20;
-        // }
 
         updateText("A new disease is introduced in the eagle population. Adult eagles have a harder time hunting, and fewer chicks hatch.");
       } else {
