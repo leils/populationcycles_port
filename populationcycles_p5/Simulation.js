@@ -7,36 +7,36 @@ function seedSimulation() {
     let cellType = CELL_TYPES.EMPTY;                                       // Default to empty cell
 
     let r = simP5 ? simP5.random(1) : Math.random();
-    if (r < 0.25) { 
-      cellType = CELL_TYPES.EAGLE; 
-      st = eagleSpan; 
+    if (r < 0.25) {
+      cellType = CELL_TYPES.EAGLE;
+      st = eagleSpan;
       intel = eagleGrowth;
-      
+
       eaglescount++;
-        
+
     }                                                                       // 25% chance for eagles
-    else if (r < 0.50) { 
-      cellType = CELL_TYPES.MICE; 
-      st = miceSpan; 
+    else if (r < 0.50) {
+      cellType = CELL_TYPES.MICE;
+      st = miceSpan;
       intel = miceGrowth;
-      
+
       micecount++;
-      
+
     }                                                                       // 25% chance for mice (50% - the 25% for eagles)
-    else if (r < 0.75) { 
-      cellType = CELL_TYPES.GRAIN; 
-      st = grainSpan; 
+    else if (r < 0.75) {
+      cellType = CELL_TYPES.GRAIN;
+      st = grainSpan;
       intel = grainGrowth;
-      
+
       graincount++;
-      
+
     }                                                                     // 25% chance for grainSpan (75% - the 50% for mice)
 
 
-    cells[i-1][0] = i-1;
-    cells[i-1][1] = st;
-    cells[i-1][2] = cellType;  // Store type instead of color
-    cells[i-1][3] = intel;                            // adds the new cell
+    cells[i - 1][0] = i - 1;
+    cells[i - 1][1] = st;
+    cells[i - 1][2] = cellType;  // Store type instead of color
+    cells[i - 1][3] = intel;                            // adds the new cell
   }
 }
 
@@ -48,41 +48,58 @@ function displaySimulation() {                                         // displa
   }
 }
 
-function runRecovery () {
+function runRecovery() {
+  if ((generationCount >= lastHeatWave + eventCycleLength) && (grainSpan != midSpan || grainGrowth != midGrowth)) {
+    console.log('reset grain to regular growth rate');
+    grainSpan = midSpan;
+    grainGrowth = midGrowth;
+  }
+
+  if ((generationCount >= lastInvasiveMice + eventCycleLength) && (miceSpan != midSpan || miceGrowth != midGrowth)) {
+    console.log('reset grain to regular growth rate');
+    miceSpan = midSpan;
+    miceGrowth = midGrowth;
+  }
+
+  if ((generationCount >= lastEagleDisease + eventCycleLength) && (eagleSpan != midSpan || eagleGrowth != midGrowth)) {
+    console.log('reset grain to regular growth rate');
+    eagleSpan = midSpan;
+    eagleGrowth = midGrowth;
+  }
   // Species slowly return to "normal" over time 
-  if (generationCount % spanRecoveryRate == 0) {
-    if (grainSpan != midSpan) {
-      let increment = grainSpan > midSpan ? -spanRecovery : spanRecovery; 
-      grainSpan += increment;
-    }
-    
-    if (miceSpan != midSpan) {
-      let increment = miceSpan > midSpan ? -spanRecovery : spanRecovery; 
-      miceSpan += increment;
-    }
+  // if (generationCount % spanRecoveryRate == 0) {
+  //   // if (grainSpan != midSpan) {
+  //   //   let increment = grainSpan > midSpan ? -spanRecovery : spanRecovery; 
+  //   //   grainSpan += increment;
+  //   // }
 
-    if (eagleSpan!= midSpan) {
-      let increment = eagleSpan > midSpan ? -spanRecovery : spanRecovery; 
-      eagleSpan += increment;
-    }
-  }
+  //   if (miceSpan != midSpan) {
+  //     let increment = miceSpan > midSpan ? -spanRecovery : spanRecovery;
+  //     miceSpan += increment;
+  //   }
 
-  if (generationCount % growthRecoveryRate == 0) {
-    if (grainGrowth!= midGrowth) {
-      let increment = grainGrowth > midGrowth? -growthRecovery : growthRecovery; 
-      grainGrowth += increment;
-    }
+  //   if (eagleSpan != midSpan) {
+  //     let increment = eagleSpan > midSpan ? -spanRecovery : spanRecovery;
+  //     eagleSpan += increment;
+  //   }
+  // }
 
-    if (miceGrowth != midGrowth) {
-      let increment = miceGrowth > midGrowth? -growthRecovery : growthRecovery; 
-      miceGrowth += increment;
-    }
+  // if (generationCount % growthRecoveryRate == 0) {
+  //   // if (grainGrowth!= midGrowth) {
+  //   //   let increment = grainGrowth > midGrowth? -growthRecovery : growthRecovery; 
+  //   //   grainGrowth += increment;
+  //   // }
 
-    if (eagleGrowth != midGrowth) {
-      let increment = eagleGrowth  > midGrowth? -growthRecovery : growthRecovery; 
-      eagleGrowth  += increment;
-    }
-  }
+  //   if (miceGrowth != midGrowth) {
+  //     let increment = miceGrowth > midGrowth ? -growthRecovery : growthRecovery;
+  //     miceGrowth += increment;
+  //   }
+
+  //   if (eagleGrowth != midGrowth) {
+  //     let increment = eagleGrowth > midGrowth ? -growthRecovery : growthRecovery;
+  //     eagleGrowth += increment;
+  //   }
+  // }
 
   updateSpeciesFitnessSliders();
 }
@@ -102,50 +119,50 @@ function runSimulation() {
   graincount = 0;                                                        // keeping track of cell counts
   micecount = 0;
   eaglescount = 0;
-  
+
   // Create array with indices 0 to maxcells-1
   let indices = Array.from(Array(maxcells).keys());
-  
+
   // Fisher-Yates shuffle
   // http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
   for (let i = indices.length - 1; i > 0; i--) {
     let j = Math.floor((simP5 ? simP5.random(0, i + 1) : Math.random() * (i + 1)));
     [indices[i], indices[j]] = [indices[j], indices[i]]; // Swap elements
   }
-    
+
   sim.push();                                                          // save current drawing state
   sim.fill(0);
   sim.noStroke();
   sim.rect(0, 0, sim.width, sim.height);
 
-  for (let i = maxcells-1; i >= 0; i--) {
+  for (let i = maxcells - 1; i >= 0; i--) {
     if (!dead(cells[indices[i]][0])) {
-      if (cells[indices[i]][2] === CELL_TYPES.GRAIN) { 
-        graincount++; 
+      if (cells[indices[i]][2] === CELL_TYPES.GRAIN) {
+        graincount++;
       }
-      else if (cells[indices[i]][2] === CELL_TYPES.MICE) { 
-        micecount++; 
+      else if (cells[indices[i]][2] === CELL_TYPES.MICE) {
+        micecount++;
       }
-      else if (cells[indices[i]][2] === CELL_TYPES.EAGLE) { 
-        eaglescount++; 
+      else if (cells[indices[i]][2] === CELL_TYPES.EAGLE) {
+        eaglescount++;
       }             // update cell count                                                  
-        
+
       run(cells[indices[i]][0]);                                      // call cell behavior (please refer to cell_class for specifics)
     }
-    
+
     render(cells[indices[i]][0]);                                     // add cell to buffer image
     cells[indices[i]][1]--;                                           // reduce cell strength (cell grows older and closer to death)
   }
-  
+
   sim.pop();                                                          // restore previous drawing state
-    
-  renderedSim[0] = sim.get(0, 0, Math.floor(simWidth/2), sim.height);
-  renderedSim[1] = sim.get(Math.floor(simWidth/2), 0, Math.floor(simWidth/2), sim.height);
+
+  renderedSim[0] = sim.get(0, 0, Math.floor(simWidth / 2), sim.height);
+  renderedSim[1] = sim.get(Math.floor(simWidth / 2), 0, Math.floor(simWidth / 2), sim.height);
 
   if (recoveryOn) {
     runRecovery();
   }
-  
+
   generationCount++;                                                   // increase generation count
 }
 
@@ -161,7 +178,7 @@ function findNeighbors(cellID) {                                      // functio
     neighbors[5] = cellWrap(cellID + 1 + rowSize);                    // position 5 - southeast
     neighbors[6] = cellWrap(cellID + rowSize);                        // position 6 - south
     neighbors[7] = cellWrap(cellID - 1 + rowSize);                    // position 7 - southwest
-  } else {                                                    
+  } else {
     neighbors[0] = (cellID - 1);                                      // position 0 - west
     neighbors[1] = (cellID - 1 - rowSize);                            // position 1 - northwest
     neighbors[2] = (cellID - rowSize);                                // position 2 - north
@@ -179,14 +196,14 @@ function findNeighbors(cellID) {                                      // functio
 function cellWrap(neighborID) {                                       // function for cells positioned at edges of rows, and screen
   if (neighborID % rowSize == 1) {                                    // if current cell is last in the row
     neighborID += rowSize;                                            // return neighbor cell as first of next row
-  } 
+  }
   if (neighborID > maxcells - 1) {                                    // if current cell is last cell in array
     neighborID -= maxcells;                                           // return neighbor cell as first cell in array
-  } 
+  }
 
   if (neighborID % rowSize == 0) {                                    // if current cell is first in the row
     neighborID -= rowSize;                                            // return neighbor cell as last in the previous row
-  } 
+  }
   if (neighborID < 0) {                                               // if current cell is first cell in array      
     neighborID += maxcells;                                           // return neighbor cell as last cell in array
   }
