@@ -174,7 +174,7 @@ function drawHeatWaveMarkers() {
   
   for (let i = 0; i < heatWaveMarkers.length; i++) {
     let x = graphWidth - heatWaveMarkers[i] * graphDensity;
-    let barWidth = (((growthDamage / growthRecovery) * growthRecovery) * graphDensity);
+    let barWidth = (eventCycleLength * graphDensity);
     // graphP5.line(x, 0, x, graphHeight);
     graphP5.rect(x, 0, barWidth, graphHeight);
 

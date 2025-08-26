@@ -7,25 +7,25 @@ function seedSimulation() {
     let cellType = CELL_TYPES.EMPTY;                                       // Default to empty cell
 
     let r = simP5 ? simP5.random(1) : Math.random();
-    if (r < 0.25) { 
-      cellType = CELL_TYPES.EAGLE; 
-      st = eagleSpan; 
+    if (r < 0.25) {
+      cellType = CELL_TYPES.EAGLE;
+      st = eagleSpan;
       intel = eagleGrowth;
 
       eaglescount++;
 
     }                                                                       // 25% chance for eagles
-    else if (r < 0.50) { 
-      cellType = CELL_TYPES.MICE; 
-      st = miceSpan; 
+    else if (r < 0.50) {
+      cellType = CELL_TYPES.MICE;
+      st = miceSpan;
       intel = miceGrowth;
 
       micecount++;
 
     }                                                                       // 25% chance for mice (50% - the 25% for eagles)
-    else if (r < 0.75) { 
-      cellType = CELL_TYPES.GRAIN; 
-      st = grainSpan; 
+    else if (r < 0.75) {
+      cellType = CELL_TYPES.GRAIN;
+      st = grainSpan;
       intel = grainGrowth;
 
       graincount++;
@@ -33,10 +33,10 @@ function seedSimulation() {
     }                                                                     // 25% chance for grainSpan (75% - the 50% for mice)
 
 
-    cells[i-1][0] = i-1;
-    cells[i-1][1] = st;
-    cells[i-1][2] = cellType;  // Store type instead of color
-    cells[i-1][3] = intel;                            // adds the new cell
+    cells[i - 1][0] = i - 1;
+    cells[i - 1][1] = st;
+    cells[i - 1][2] = cellType;  // Store type instead of color
+    cells[i - 1][3] = intel;                            // adds the new cell
   }
 }
 
@@ -51,18 +51,9 @@ function displaySimulation() {                                         // displa
 function heatWave() {
   if (graincount > 0) {
     markHeatWave();
-    // Apply Weak Grain preset
-    if (recoveryOn) {
-      grainSpan -= spanDamage;
-      grainGrowth -= growthDamage;
-    } else {
-      grainSpan = 2; //reduce grain lifespan
-      miceSpan = 5;
-      eagleSpan = 5;
-      grainGrowth = 20; // reduce grain growth chance
-      miceGrowth = 50;
-      eagleGrowth = 50;
-    }
+    grainSpan -= spanDamage;
+    grainGrowth -= growthDamage;
+    lastHeatWave = generationCount;
 
     updateText("A heat wave strikes; grain has a harder time growing.");
   } else {
@@ -80,39 +71,22 @@ function handleEventCadence() {
 }
 
 function runRecovery() {
-  // Species slowly return to "normal" over time 
-  if (generationCount % spanRecoveryRate == 0) {
-    if (grainSpan != midSpan) {
-      let increment = grainSpan > midSpan ? -spanRecovery : spanRecovery;
-      grainSpan += increment;
-    }
-
-    if (miceSpan != midSpan) {
-      let increment = miceSpan > midSpan ? -spanRecovery : spanRecovery;
-      miceSpan += increment;
-    }
-
-    if (eagleSpan != midSpan) {
-      let increment = eagleSpan > midSpan ? -spanRecovery : spanRecovery;
-      eagleSpan += increment;
-    }
+  if ((generationCount >= lastHeatWave + eventCycleLength) && (grainSpan != midSpan || grainGrowth != midGrowth)) {
+    console.log('reset grain to regular growth rate');
+    grainSpan = midSpan;
+    grainGrowth = midGrowth;
   }
 
-  if (generationCount % growthRecoveryRate == 0) {
-    if (grainGrowth != midGrowth) {
-      let increment = grainGrowth > midGrowth ? -growthRecovery : growthRecovery;
-      grainGrowth += increment;
-    }
+  if ((generationCount >= lastInvasiveMice + eventCycleLength) && (miceSpan != midSpan || miceGrowth != midGrowth)) {
+    console.log('reset grain to regular growth rate');
+    miceSpan = midSpan;
+    miceGrowth = midGrowth;
+  }
 
-    if (miceGrowth != midGrowth) {
-      let increment = miceGrowth > midGrowth ? -growthRecovery : growthRecovery;
-      miceGrowth += increment;
-    }
-
-    if (eagleGrowth != midGrowth) {
-      let increment = eagleGrowth > midGrowth ? -growthRecovery : growthRecovery;
-      eagleGrowth += increment;
-    }
+  if ((generationCount >= lastEagleDisease + eventCycleLength) && (eagleSpan != midSpan || eagleGrowth != midGrowth)) {
+    console.log('reset grain to regular growth rate');
+    eagleSpan = midSpan;
+    eagleGrowth = midGrowth;
   }
 
   // updateSpeciesFitnessSliders();
@@ -151,14 +125,14 @@ function runSimulation() {
 
   for (let i = maxcells - 1; i >= 0; i--) {
     if (!dead(cells[indices[i]][0])) {
-      if (cells[indices[i]][2] === CELL_TYPES.GRAIN) { 
-        graincount++; 
+      if (cells[indices[i]][2] === CELL_TYPES.GRAIN) {
+        graincount++;
       }
-      else if (cells[indices[i]][2] === CELL_TYPES.MICE) { 
-        micecount++; 
+      else if (cells[indices[i]][2] === CELL_TYPES.MICE) {
+        micecount++;
       }
-      else if (cells[indices[i]][2] === CELL_TYPES.EAGLE) { 
-        eaglescount++; 
+      else if (cells[indices[i]][2] === CELL_TYPES.EAGLE) {
+        eaglescount++;
       }             // update cell count                                                  
 
       run(cells[indices[i]][0]);                                      // call cell behavior (please refer to cell_class for specifics)
