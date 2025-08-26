@@ -55,12 +55,17 @@ const maxSpeed = 19;
 // ----------------------------- Variables for input testing -----------------------------------//
 
 let recoveryOn = true;
-let spanRecoveryRate = 10; // Recover increments every X generations
-let growthRecoveryRate = 10; // Recover increments every X generations
+const spanRecoveryRate = 10; // Recover increments every X generations
+const growthRecoveryRate = 10; // Recover increments every X generations
+const eventCycleLength = 50;
 let spanRecovery = 1;
 let growthRecovery = 5;
 let spanDamage = 2;
 let growthDamage = 20;
+
+let lastHeatWave = -100;
+let lastInvasiveMice = -100;
+let lastEagleDisease = -100;
 
 const lowSpan = 2;
 const midSpan = 5;
