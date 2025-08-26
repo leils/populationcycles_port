@@ -42,7 +42,17 @@
       <!-- TODO: speed slider hard to touch on touchscreen, make taller -->
       <div class="ui-row">
         <button id="heat-wave-btn">Single Heat Wave</button>
-        <label>Heat Wave Frequency <input id="heat-wave-slider" type="range" min="0" max="70" value="0"></label>
+        <!-- <label>Heat Wave Frequency <input id="heat-wave-slider" type="range" min="0" max="70" value="0"></label> -->
+
+        <div class="slider-container">
+            <label for="mySlider" class="slider-label">Heat Wave Frequency</label>
+            
+            <div class="slider-controls">
+                <span>None</span>
+                <input type="range" id="heat-wave-slider" class="slider" min="0" max="70" value="0">
+                <span>Many</span>
+            </div>
+        </div>
       </div>
     </div>
     <!-- <div class="ui-section" id="cadence">

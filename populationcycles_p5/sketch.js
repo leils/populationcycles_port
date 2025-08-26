@@ -220,7 +220,6 @@ function fullReset() {
   eaglesLine.fill(graphY + graphHeight - 2);
   heatWaveMarkers = [];
   lastHeatWave = -100;
-  regularHeatWaves = false;
   generationCount = 0;
 
   seedSimulation();
