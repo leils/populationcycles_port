@@ -23,8 +23,8 @@ window.addEventListener('load', () => {
 
   if (regularHeat) {
     regularHeat.onclick = () => {
-      regularHeatwaves = !regularHeatwaves;
-      console.log(regularHeatwaves);
+      regularHeatWaves = !regularHeatWaves;
+      console.log(regularHeatWaves);
     };
   }
 
@@ -45,9 +45,18 @@ window.addEventListener('load', () => {
 
   if (heatWaveSlider) {
     heatWaveSlider.oninput = (e) => {
-      heatWaveGap = parseInt(e.target.value, 10);
+      let frequencyRead = parseInt(e.target.value, 10);
+      if (frequencyRead == 0) {
+        console.log("event frequency is 0");
+        regularHeatWaves = false;
+      } else {
+        console.log("event frequency is non-zero");
+        console.log(frequencyRead);
+        regularHeatWaves = true;
+        heatWaveGap = 80 - frequencyRead; // 
+      }
     };
-    heatWaveSlider.value = heatWaveGap;
+    heatWaveSlider.value = 0; // Ensure we start at 0;
   }
 
   if (heatWaveBtn) {
@@ -117,7 +126,6 @@ function updateText(newEventText, color = "white") {
     // stop displaying the event text after 10 seconds
     textDiv.style.display = "none";
   }, 10000);
-
 }
 
 function clearTextEvent() {

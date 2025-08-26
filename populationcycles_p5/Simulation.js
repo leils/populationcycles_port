@@ -69,7 +69,8 @@ function heatWave() {
 }
 
 function handleEventCadence() {
-  if (regularHeatwaves && (generationCount - lastHeatWave >= heatWaveGap)) {
+  console.log("regularHeatWaves: ", regularHeatWaves, " lastHeatWave: ", lastHeatWave, " heatWaveGap: ", heatWaveGap );
+  if (regularHeatWaves && (generationCount - lastHeatWave >= heatWaveGap)) {
     heatWave();
     lastHeatWave = generationCount;
   }

@@ -93,8 +93,8 @@ function updateReactionText() {
     message = rtMiceDead;
   } else if (eaglescount === 0) {
     message = rtEaglesDead;
-  } else if (generationCount >= 1000) {
-    message = rtTooLong;
+  // } else if (generationCount >= 1000) {
+  //   message = rtTooLong;
   } else {
     return;
   }
@@ -141,7 +141,7 @@ function globalSetupOperations() {
   
   // Set up graph arrays
   // TODO: fix this weird hack to get the lines to span the width of the graph
-  let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
+  // let graphLineArrayLength = ((graphWidth) / graphDensity) + 4;
   
   grainLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
   miceLine = new Array(graphMaxPoints).fill(graphY + graphHeight - 2);
@@ -167,7 +167,8 @@ function fullReset() {
   miceLine.fill(graphY + graphHeight - 2);
   eaglesLine.fill(graphY + graphHeight - 2);
   heatWaveMarkers = [];
-  lastHeatWave = 0;
+  lastHeatWave = -100;
+  regularHeatWaves = false;
   generationCount = 0;
 
   seedSimulation();
